@@ -27,28 +27,25 @@
    NAME s  Specify new configuration name
 
  AVL   c>  
- Reading file: Planes/TestPlane/TestPlane.avl  ...
+ ** Open error on file: Planes\TestPlane\TestPlane
+    Trying alternative: Planes\TestPlane\TestPlane.avl
+
+ Reading file: Planes\TestPlane\TestPlane.avl  ...
 
  Configuration: TestPlane                                                   
 
-   Building surface: MainWing                                
-     Reading airfoil from file: Airfoils\S4022.dat
-     Reading airfoil from file: Airfoils\S4022.dat
+   Building surface: mainWing                                
+     Reading airfoil from file: Airfoils\SD7037-092-88.dat
+     Reading airfoil from file: Airfoils\SD7037-092-88.dat
   
-   Building duplicate image-surface: MainWing (YDUP)                         
-
-   Building surface: hStab                                   
-     Reading airfoil from file: Airfoils\S4022.dat
-     Reading airfoil from file: Airfoils\S4022.dat
-  
-   Building duplicate image-surface: hStab (YDUP)                            
+   Building duplicate image-surface: mainWing (YDUP)                         
 
  Mach =    0.0000  (default)
 
     0 Bodies
-    4 Solid surfaces
-   40 Strips
-   60 Vortices
+    2 Solid surfaces
+   20 Strips
+  200 Vortices
 
     0 Control variables
     0 Design parameters
@@ -105,91 +102,14 @@
        YM   Cn yaw  mom =   0.000    
 
       Select new  constraint,value  for alpha          c>  
- Enter specified CL          :   0.000    
+ Enter specified alpha       :   0.000    
 
  Operation of run case 1/1:   -unnamed-                              
  ==========================================================
 
   variable          constraint              
   ------------      ------------------------
-  A lpha        ->  CL          =  0.6000         
-  B eta         ->  beta        =   0.000         
-  R oll  rate   ->  pb/2V       =   0.000         
-  P itch rate   ->  qc/2V       =   0.000         
-  Y aw   rate   ->  rb/2V       =   0.000         
-  ------------      ------------------------
-
-  C1  set level or banked  horizontal flight constraints
-  C2  set steady pitch rate (looping) flight constraints
-  M odify parameters                                    
-
- "#" select  run case          L ist defined run cases   
-  +  add new run case          S ave run cases to file   
-  -  delete  run case          F etch run cases from file
-  N ame current run case       W rite forces to file     
-
- eX ecute run case             I nitialize variables     
-
-  G eometry plot               T refftz Plane plot       
-
-  ST  stability derivatives    FT  total   forces        
-  SB  body-axis derivatives    FN  surface forces        
-  RE  reference quantities     FS  strip   forces        
-  DE  design changes           FE  element forces        
-  O ptions                     FB  body forces           
-                               HM  hinge moments         
-                               VM  strip shear,moment    
-  MRF  machine-readable format CPOM OML surface pressures
-
- .OPER (case 1/1)   c>  
-        Setting trim CL from current CL constraint
-
-     .. setting new velocity for run case  1
-     .. setting new turn radius for run case  1
-     .. setting new load factor for run case  1
-
-     Setup of trimmed run case 1/1:   -unnamed-                              
-     (level or banked horizontal flight)
-     =================================================
-      B  bank angle =  0.000      deg
-      C  CL         = 0.6000       
-      V  velocity   =  1.826      Lunit/Tunit
-      M  mass       =  1.000      Munit
-      D  air dens.  =  1.000      Munit/Lunit^3
-      G  grav.acc.  =  1.000      Lunit/Tunit^2
-         turn rad.  =  0.000      Lunit
-         load fac.  =  1.000       
-      X  X_cg       =  0.000      Lunit
-      Y  Y_cg       =  0.000      Lunit
-      Z  Z_cg       =  0.000      Lunit
-
-     Enter parameter, value  (or  # - + N )   c>  
-      Enter X_cg location   r>       .. setting new x_cg for run case  1
-     .. setting new turn radius for run case  1
-     .. setting new load factor for run case  1
-
-     Setup of trimmed run case 1/1:   -unnamed-                              
-     (level or banked horizontal flight)
-     =================================================
-      B  bank angle =  0.000      deg
-      C  CL         = 0.6000       
-      V  velocity   =  1.826      Lunit/Tunit
-      M  mass       =  1.000      Munit
-      D  air dens.  =  1.000      Munit/Lunit^3
-      G  grav.acc.  =  1.000      Lunit/Tunit^2
-         turn rad.  =  0.000      Lunit
-         load fac.  =  1.000       
-      X  X_cg       =  1.000      Lunit
-      Y  Y_cg       =  0.000      Lunit
-      Z  Z_cg       =  0.000      Lunit
-
-     Enter parameter, value  (or  # - + N )   c>  
- Operation of run case 1/1:   -unnamed-                              
- ==========================================================
-
-  variable          constraint              
-  ------------      ------------------------
-  A lpha        ->  CL          =  0.6000         
+  A lpha        ->  alpha       =   5.000         
   B eta         ->  beta        =   0.000         
   R oll  rate   ->  pb/2V       =   0.000         
   P itch rate   ->  qc/2V       =   0.000         
@@ -225,7 +145,71 @@
   Building bound-vortex velocity matrix...
 
  iter d(alpha)   d(beta)    d(pb/2V)   d(qc/2V)   d(rb/2V)  
-   1 -0.602E+02 -0.000E+00 -0.000E+00 -0.000E+00  0.000E+00
- Cannot trim.  Alpha too large.  a =  -60.224522119201282     
+   1 -0.000E+00 -0.000E+00  0.000E+00 -0.000E+00  0.000E+00
+ ---------------------------------------------------------------
+ Vortex Lattice Output -- Total Forces
+
+ Configuration: TestPlane                                                   
+     # Surfaces =   2
+     # Strips   =  20
+     # Vortices = 200
+
+  Sref =  7.5000       Cref =  10.000       Bref =  10.000    
+  Xref =  0.0000       Yref =  0.0000       Zref =  0.0000    
+
+ Standard axis orientation,  X fwd, Z down         
+
+ Run case:  -unnamed-                              
+
+  Alpha =   5.00000     pb/2V =  -0.00000     p'b/2V =  -0.00000
+  Beta  =   0.00000     qc/2V =   0.00000
+  Mach  =     0.000     rb/2V =  -0.00000     r'b/2V =  -0.00000
+
+  CXtot =   0.05221     Cltot =  -0.00000     Cl'tot =   0.00000
+  CYtot =   0.00000     Cmtot =  -0.02903
+  CZtot =  -0.75879     Cntot =   0.00000     Cn'tot =   0.00000
+
+  CLtot =   0.76045
+  CDtot =   0.01412
+  CDvis =   0.00000     CDind = 0.0141237
+  CLff  =   0.76169     CDff  = 0.0141021    | Trefftz
+  CYff  =   0.00000         e =    0.9822    | Plane  
+
+
+ ---------------------------------------------------------------
+
+ Operation of run case 1/1:   -unnamed-                              
+ ==========================================================
+
+  variable          constraint              
+  ------------      ------------------------
+  A lpha        ->  alpha       =   5.000         
+  B eta         ->  beta        =   0.000         
+  R oll  rate   ->  pb/2V       =   0.000         
+  P itch rate   ->  qc/2V       =   0.000         
+  Y aw   rate   ->  rb/2V       =   0.000         
+  ------------      ------------------------
+
+  C1  set level or banked  horizontal flight constraints
+  C2  set steady pitch rate (looping) flight constraints
+  M odify parameters                                    
+
+ "#" select  run case          L ist defined run cases   
+  +  add new run case          S ave run cases to file   
+  -  delete  run case          F etch run cases from file
+  N ame current run case       W rite forces to file     
+
+ eX ecute run case             I nitialize variables     
+
+  G eometry plot               T refftz Plane plot       
+
+  ST  stability derivatives    FT  total   forces        
+  SB  body-axis derivatives    FN  surface forces        
+  RE  reference quantities     FS  strip   forces        
+  DE  design changes           FE  element forces        
+  O ptions                     FB  body forces           
+                               HM  hinge moments         
+                               VM  strip shear,moment    
+  MRF  machine-readable format CPOM OML surface pressures
 
  .OPER (case 1/1)   c>  

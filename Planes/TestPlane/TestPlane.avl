@@ -1,12 +1,12 @@
 TestPlane
 0
 0 0 0
-1 1 1
+7.5 10 10
 0 0 0
 0
 SURFACE
-MainWing
-1 10
+mainWing
+10 1
 COMPONENT
 1
 YDUPLICATE
@@ -18,27 +18,8 @@ ANGLE
 SECTION
 0 0 0 1 0 10 1 
 AFIL
-Airfoils\S4022.dat
+Airfoils\SD7037-092-88.dat
 SECTION
 0.25 5 0 0.5 0 10 1 
 AFIL
-Airfoils\S4022.dat
-SURFACE
-hStab
-2 5
-COMPONENT
-1
-YDUPLICATE
-0.0
-TRANSLATE
-5 0 0.5
-ANGLE
-0
-SECTION
-0 0 0 0.5 0 10 1 
-AFIL
-Airfoils\S4022.dat
-SECTION
-0.125 2 0 0.25 0 10 1 
-AFIL
-Airfoils\S4022.dat
+Airfoils\SD7037-092-88.dat
