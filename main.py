@@ -11,7 +11,7 @@ mainWing = pyAVL.Surface('mainWing',1,1,[0,0,0],0,10,1,
 ])
 TestPlane = pyAVL.Plane([mainWing])
 pyAVL.CreateAVLPlane('TestPlane',0,TestPlane)
-alphas = [5]
+alphas = [1,2,3,4,5]
 pyAVL.alpha('TestPlane',alphas)
 
 

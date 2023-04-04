@@ -3,7 +3,7 @@ import os
 import sys
 import re
 import subprocess
-
+import time
 
 class Plane:
     def __init__(self,surfaces):
@@ -103,17 +103,44 @@ def CreateAVLPlane(name,mach,plane):
 class AVL:
     def __init__(self):
         self.inputList = ''
+        self.cd = os.getcwd()
         # print(self)
     def addInput(self,input):
         self.inputList += '{}\n'.format(input)
         # print(self.inputList)
+    def clearInput(self):
+        self.inputlist = ''
     def runAVL(self):
         self.AVLsp = subprocess.Popen('avl.exe',
             shell=False,
             stdin=subprocess.PIPE,
-            stdout=open("AVLsession.log", 'w'),         # Put the output of this terminal into the open log file
+            stdout=open('AVLsession.log', 'w'),         # Put the output of this terminal into the open log file
             stderr=subprocess.PIPE)
         self.AVLsp.stdin.write(self.inputList.encode('utf-8'))
+        self.AVLsp.stdin.flush()
+        self.AVLsp.communicate()
+    
+        log = open('AVLsession.log').read()
+        os.path.getsize('AVLsession.log')
+        # print(len(log))
+        start = log.rfind('  Alpha =')
+        end = log.rfind('| Plane')
+        caseOutput = log[start:end].replace('| Trefftz','').replace('=',' ').split()
+        caseData = dict(zip(caseOutput[::2],list(map(float,caseOutput[1::2]))))
+        return caseData
+        
+        
+    # def readAVL(self,varlist):
+    #     varlist = [var + ' = ' for var in varlist]
+    #     with open("{}\\AVLsession.log".format(self.cd),'r') as f:
+    #         print("{}\\AVLsession.log".format(self.cd))
+    #         log = f.read()
+    #         start = log.rfind(' Forces')+len(' Forces')
+    #         end = log.rfind('| Plane')
+    #         print(start,end)
+    #         for var in varlist:
+    #             print(var)
+    #             print(log.rfind(var,start,end))
 
 def alpha(plane,alphas):
     AVLsp = AVL()
@@ -124,8 +151,11 @@ def alpha(plane,alphas):
         AVLsp.addInput('A')
         AVLsp.addInput('{}'.format(alpha))
         AVLsp.addInput('X')
-    AVLsp.runAVL()
-
+        output = AVLsp.runAVL()
+        CLCD = output['CLtot']/output['CDtot']
+        print(CLCD)
+        AVLsp.clearInput()
+    # AVLsp.readAVL(['e','Alpha','CLtot'])
 
 if __name__ == "__main__":
     name = 'TestPlane'
