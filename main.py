@@ -4,37 +4,52 @@ sys.path.append('path/to/pyAVL.py')
 import pyAVL
 
 # sections = [[Xle,Yle,Zle],chord,angle,Nspan,Sspace,airfoil]
-mainWing = pyAVL.Surface('mainWing',1,1,[0,0,0],0,10,1,
-    [
-    [[0,0,0],1,0,10,1,'SD7037-092-88.dat'],
-    [[.25,5,0],.5,0,10,1,'SD7037-092-88.dat'],
-])
-TestPlane = pyAVL.Plane([mainWing])
-pyAVL.CreateAVLPlane('TestPlane',0,TestPlane)
-alphas = [1,2,3,4,5]
-pyAVL.alpha('TestPlane',alphas)
+def taperstudy(taper):
+    mainWing = pyAVL.Surface('mainWing',1,1,[0,0,0],0,20,1,
+        [
+        [[0,0,0],1,0,20,1,'SD7037-092-88.dat'],
+        [[.25*taper[0],5,0],taper[0],0,20,1,'SD7037-092-88.dat'],
+    ])
+    print(mainWing.sections)
+    TestPlane = pyAVL.Plane([mainWing])
+    pyAVL.CreateAVLPlane('TestPlane',0,TestPlane)
+    alphas = [0]
+    CLCD = pyAVL.alpha('TestPlane',alphas)
+    print(CLCD)
+    return CLCD
 
 
+class OptProblem(om.ExplicitComponent):
+    """
+    Computes the CL/CD of the wing
+    """
 
+    def setup(self):
+        self.add_input('taper',val=1)
 
-# # build the model
-# prob = om.Problem()
+        self.add_output('CLCD',val=0)
 
-# prob.model.add_subsystem('Aerodynamics', om.ExecComp('f = (x-3)**2 + x*y + (y+4)**2 - 3'))
+    def setup_partials(self):
+        self.declare_partials('*','*',method='fd')
 
-# # setup the optimization
-# prob.driver = om.ScipyOptimizeDriver()
-# prob.driver.options['optimizer'] = 'SLSQP'
+    def compute(self, inputs, outputs):
+        taper = inputs['taper']
 
-# prob.model.add_design_var('paraboloid.x', lower=-50, upper=50)
-# prob.model.add_design_var('paraboloid.y', lower=-50, upper=50)
-# prob.model.add_objective('paraboloid.f')
+        outputs['CLCD'] = taperstudy(taper)
+    
+    
 
-# prob.setup()
+if __name__ == "__main__":
+    prob = om.Problem()
+    prob.model.add_subsystem('CLCDOpt', OptProblem(), promotes_inputs=['taper'])
 
-# # Set initial values.
-# prob.set_val('paraboloid.x', 3.0)
-# prob.set_val('paraboloid.y', -4.0)
+    prob.model.set_input_defaults('taper',.5)
 
-# # run the optimization
-# prob.run_driver();
+    prob.driver = om.ScipyOptimizeDriver()
+    prob.driver.options['optimizer'] = 'COBYLA'
+
+    prob.model.add_design_var('taper',lower = 0.01, upper = 2)
+    prob.model.add_objective('CLCDOpt.CLCD',scaler=-1)
+
+    prob.setup()
+    prob.run_driver();

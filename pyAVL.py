@@ -152,8 +152,10 @@ def alpha(plane,alphas):
         AVLsp.addInput('{}'.format(alpha))
         AVLsp.addInput('X')
         output = AVLsp.runAVL()
-        CLCD = output['CLtot']/output['CDtot']
-        print(CLCD)
+        # CLCD = output['CLtot']/output['CDtot']
+        e = output['e']
+        # print(CLCD)
+        return e
         AVLsp.clearInput()
     # AVLsp.readAVL(['e','Alpha','CLtot'])
 
