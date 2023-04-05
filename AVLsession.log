@@ -37,6 +37,8 @@
    Building surface: mainWing                                
      Reading airfoil from file: Airfoils\SD7037-092-88.dat
      Reading airfoil from file: Airfoils\SD7037-092-88.dat
+     Reading airfoil from file: Airfoils\SD7037-092-88.dat
+     Reading airfoil from file: Airfoils\SD7037-092-88.dat
   
    Building duplicate image-surface: mainWing (YDUP)                         
 
@@ -44,8 +46,8 @@
 
     0 Bodies
     2 Solid surfaces
-   40 Strips
-  800 Vortices
+   50 Strips
+  500 Vortices
 
     0 Control variables
     0 Design parameters
@@ -151,10 +153,10 @@
 
  Configuration: TestPlane                                                   
      # Surfaces =   2
-     # Strips   =  40
-     # Vortices = 800
+     # Strips   =  50
+     # Vortices = 500
 
-  Sref =  7.1484       Cref =  10.000       Bref =  10.000    
+  Sref =  3.9414       Cref = 0.78828       Bref =  5.0000    
   Xref =  0.0000       Yref =  0.0000       Zref =  0.0000    
 
  Standard axis orientation,  X fwd, Z down         
@@ -165,18 +167,93 @@
   Beta  =   0.00000     qc/2V =   0.00000
   Mach  =     0.000     rb/2V =  -0.00000     r'b/2V =  -0.00000
 
-  CXtot =  -0.00219     Cltot =   0.00000     Cl'tot =   0.00000
-  CYtot =  -0.00000     Cmtot =  -0.01314
-  CZtot =  -0.30803     Cntot =  -0.00000     Cn'tot =  -0.00000
+  CXtot =  -0.00349     Cltot =  -0.00000     Cl'tot =  -0.00000
+  CYtot =   0.00000     Cmtot =  -0.17812
+  CZtot =  -0.26309     Cntot =   0.00000     Cn'tot =   0.00000
 
-  CLtot =   0.30803
-  CDtot =   0.00219
-  CDvis =   0.00000     CDind = 0.0021880
-  CLff  =   0.30803     CDff  = 0.0022035    | Trefftz
-  CYff  =   0.00000         e =    0.9798    | Plane  
+  CLtot =   0.26309
+  CDtot =   0.00349
+  CDvis =   0.00000     CDind = 0.0034853
+  CLff  =   0.26309     CDff  = 0.0034774    | Trefftz
+  CYff  =   0.00000         e =    0.9989    | Plane  
 
 
  ---------------------------------------------------------------
+
+ Operation of run case 1/1:   -unnamed-                              
+ ==========================================================
+
+  variable          constraint              
+  ------------      ------------------------
+  A lpha        ->  alpha       =   0.000         
+  B eta         ->  beta        =   0.000         
+  R oll  rate   ->  pb/2V       =   0.000         
+  P itch rate   ->  qc/2V       =   0.000         
+  Y aw   rate   ->  rb/2V       =   0.000         
+  ------------      ------------------------
+
+  C1  set level or banked  horizontal flight constraints
+  C2  set steady pitch rate (looping) flight constraints
+  M odify parameters                                    
+
+ "#" select  run case          L ist defined run cases   
+  +  add new run case          S ave run cases to file   
+  -  delete  run case          F etch run cases from file
+  N ame current run case       W rite forces to file     
+
+ eX ecute run case             I nitialize variables     
+
+  G eometry plot               T refftz Plane plot       
+
+  ST  stability derivatives    FT  total   forces        
+  SB  body-axis derivatives    FN  surface forces        
+  RE  reference quantities     FS  strip   forces        
+  DE  design changes           FE  element forces        
+  O ptions                     FB  body forces           
+                               HM  hinge moments         
+                               VM  strip shear,moment    
+  MRF  machine-readable format CPOM OML surface pressures
+
+ .OPER (case 1/1)   c>  MRF: all subsequent output in full-precision machine readable format
+
+ Operation of run case 1/1:   -unnamed-                              
+ ==========================================================
+
+  variable          constraint              
+  ------------      ------------------------
+  A lpha        ->  alpha       =   0.000         
+  B eta         ->  beta        =   0.000         
+  R oll  rate   ->  pb/2V       =   0.000         
+  P itch rate   ->  qc/2V       =   0.000         
+  Y aw   rate   ->  rb/2V       =   0.000         
+  ------------      ------------------------
+
+  C1  set level or banked  horizontal flight constraints
+  C2  set steady pitch rate (looping) flight constraints
+  M odify parameters                                    
+
+ "#" select  run case          L ist defined run cases   
+  +  add new run case          S ave run cases to file   
+  -  delete  run case          F etch run cases from file
+  N ame current run case       W rite forces to file     
+
+ eX ecute run case             I nitialize variables     
+
+  G eometry plot               T refftz Plane plot       
+
+  ST  stability derivatives    FT  total   forces        
+  SB  body-axis derivatives    FN  surface forces        
+  RE  reference quantities     FS  strip   forces        
+  DE  design changes           FE  element forces        
+  O ptions                     FB  body forces           
+                               HM  hinge moments         
+                               VM  strip shear,moment    
+  MRF  machine-readable format CPOM OML surface pressures
+
+ .OPER (case 1/1)   c>  
+Enter filename, or <return> for screen output   s>  
+ File exists.  Append/Overwrite/Cancel  (A/O/C)?  C
+mrftot: fileid = TOT
 
  Operation of run case 1/1:   -unnamed-                              
  ==========================================================

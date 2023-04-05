@@ -15,6 +15,8 @@ class Plane:
 
             # self.Sref += self.surfaces.sections
             self.Sref +=((self.surfaces[0].sections[i+1][1]+self.surfaces[0].sections[i][1])*(self.surfaces[0].sections[i+1][0][1]-self.surfaces[0].sections[i][0][1]))
+        self.Bref = 2*self.surfaces[0].sections[-1][0][1]
+        self.Cref = self.Sref/self.Bref
         # for i = len(self.surfaces[0].sections[:-1])
         # self.Sref = self.surfaces[0].sections[:-1]
 
@@ -89,11 +91,9 @@ def CreateAVLPlane(name,mach,plane):
         print("Planes/{} folder created".format(name))
 
     
-    Cref = 10
-    Bref = 10
-    
+
     with open('{}\\Planes\\{}\\{}.avl'.format(cd,name,name),'w') as file:
-        file.write('{}\n{}\n0 0 0\n{} {} {}\n0 0 0\n0\n'.format(name,mach,plane.Sref,Cref,Bref))
+        file.write('{}\n{}\n0 0 0\n{} {} {}\n0 0 0\n0\n'.format(name,mach,plane.Sref,plane.Cref,plane.Bref))
         for surface in plane.surfaces:
             file.write(WriteSurface(surface))
 
@@ -119,15 +119,26 @@ class AVL:
         self.AVLsp.stdin.write(self.inputList.encode('utf-8'))
         self.AVLsp.stdin.flush()
         self.AVLsp.communicate()
-    
-        log = open('AVLsession.log').read()
-        os.path.getsize('AVLsession.log')
-        # print(len(log))
-        start = log.rfind('  Alpha =')
-        end = log.rfind('| Plane')
-        caseOutput = log[start:end].replace('| Trefftz','').replace('=',' ').split()
-        caseData = dict(zip(caseOutput[::2],list(map(float,caseOutput[1::2]))))
-        return caseData
+    def readFT(self):
+        FT = open('FT.out')
+        FTout = FT.readlines()
+        out = {}
+        for i in [7,8,11,12,13,14,15,16,17,18,19,20]:
+            newLine = FTout[i].replace('\n','').replace(',',' ').replace('|',' ').replace('Trefftz Plane: ','').split()
+            h = int(len(newLine)/2) # get half length
+            for j in range(h):
+                out[newLine[j+h]] = float(newLine[j])
+        FT.close()
+        return out
+            
+        # log = open('AVLsession.log').read()
+        # os.path.getsize('AVLsession.log')
+        # # print(len(log))
+        # start = log.rfind('  Alpha =')
+        # end = log.rfind('| Plane')
+        # caseOutput = log[start:end].replace('| Trefftz','').replace('=',' ').split()
+        # caseData = dict(zip(caseOutput[::2],list(map(float,caseOutput[1::2]))))
+        # return caseData
         
         
     # def readAVL(self,varlist):
@@ -151,14 +162,34 @@ def alpha(plane,alphas):
         AVLsp.addInput('A')
         AVLsp.addInput('{}'.format(alpha))
         AVLsp.addInput('X')
-        output = AVLsp.runAVL()
-        # CLCD = output['CLtot']/output['CDtot']
-        e = output['e']
-        # print(CLCD)
-        return e
+        AVLsp.addInput('MRF')
+        AVLsp.addInput('FT')
+        AVLsp.addInput('FT.out')
+        AVLsp.addInput('O')
+        AVLsp.runAVL()
+        out = AVLsp.readFT()
+        return out
         AVLsp.clearInput()
     # AVLsp.readAVL(['e','Alpha','CLtot'])
 
+def CL(plane,CLs):
+    AVLsp = AVL()
+    AVLsp.addInput('load Planes\\{}\\{}'.format(plane,plane))
+    AVLsp.addInput('oper')
+    for CL in CLs:
+        AVLsp.addInput('A')
+        AVLsp.addInput('C')
+        AVLsp.addInput('{}'.format(CL))
+        AVLsp.addInput('X')
+        AVLsp.addInput('MRF')
+        AVLsp.addInput('FT')
+        AVLsp.addInput('FT.out')
+        AVLsp.addInput('O')
+        AVLsp.runAVL()
+        out = AVLsp.readFT()
+        return out
+        AVLsp.clearInput()
+    # AVLsp.readAVL(['e','Alpha','CLtot'])
 if __name__ == "__main__":
     name = 'TestPlane'
     # mach = 0
