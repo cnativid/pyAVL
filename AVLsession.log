@@ -38,7 +38,6 @@
      Reading airfoil from file: Airfoils\SD7037-092-88.dat
      Reading airfoil from file: Airfoils\SD7037-092-88.dat
      Reading airfoil from file: Airfoils\SD7037-092-88.dat
-     Reading airfoil from file: Airfoils\SD7037-092-88.dat
   
    Building duplicate image-surface: mainWing (YDUP)                         
 
@@ -46,8 +45,8 @@
 
     0 Bodies
     2 Solid surfaces
-   50 Strips
-  500 Vortices
+   60 Strips
+  900 Vortices
 
     0 Control variables
     0 Design parameters
@@ -90,203 +89,43 @@
   MRF  machine-readable format CPOM OML surface pressures
 
  .OPER (case 1/1)   c>  
-       constraint            value     
-      - - - - - - - - - - - - - - - - -
-   ->  A    alpha       =   0.000    
-       B    beta        =   0.000    
-       R    pb/2V       =   0.000    
-       P    qc/2V       =   0.000    
-       Y    rb/2V       =   0.000    
-       C    CL          =   0.000    
-       S    CY          =   0.000    
-       RM   Cl roll mom =   0.000    
-       PM   Cm pitchmom =   0.000    
-       YM   Cn yaw  mom =   0.000    
+ =========================================
+  K eystroke mode       V iewpoint        
+  A nnotate plot        O ptions          
+  H ardcopy plot        S elect surfaces  
+  Z oom                 U nzoom           
 
-      Select new  constraint,value  for alpha          c>  
- Enter specified alpha       :   0.000    
+  CH ordline    T       CA amber        F
+  CN tlpoint    F       TR ailing legs  F
+  BO ound leg   T       NO rmal vector  F
+  LO ading      F       AX es, xyz ref. T
 
- Operation of run case 1/1:   -unnamed-                              
- ==========================================================
+ Geometry plot command:  Writing   PostScript to file  plot.ps ...
 
-  variable          constraint              
-  ------------      ------------------------
-  A lpha        ->  alpha       =   0.000         
-  B eta         ->  beta        =   0.000         
-  R oll  rate   ->  pb/2V       =   0.000         
-  P itch rate   ->  qc/2V       =   0.000         
-  Y aw   rate   ->  rb/2V       =   0.000         
-  ------------      ------------------------
+ =========================================
+  K eystroke mode       V iewpoint        
+  A nnotate plot        O ptions          
+  H ardcopy plot        S elect surfaces  
+  Z oom                 U nzoom           
 
-  C1  set level or banked  horizontal flight constraints
-  C2  set steady pitch rate (looping) flight constraints
-  M odify parameters                                    
+  CH ordline    T       CA amber        F
+  CN tlpoint    F       TR ailing legs  F
+  BO ound leg   T       NO rmal vector  F
+  LO ading      F       AX es, xyz ref. T
 
- "#" select  run case          L ist defined run cases   
-  +  add new run case          S ave run cases to file   
-  -  delete  run case          F etch run cases from file
-  N ame current run case       W rite forces to file     
+ Geometry plot command:   * Unrecognized command
 
- eX ecute run case             I nitialize variables     
+ X-window size changed to  11.00" x  8.21"
 
-  G eometry plot               T refftz Plane plot       
+ =========================================
+  K eystroke mode       V iewpoint        
+  A nnotate plot        O ptions          
+  H ardcopy plot        S elect surfaces  
+  Z oom                 U nzoom           
 
-  ST  stability derivatives    FT  total   forces        
-  SB  body-axis derivatives    FN  surface forces        
-  RE  reference quantities     FS  strip   forces        
-  DE  design changes           FE  element forces        
-  O ptions                     FB  body forces           
-                               HM  hinge moments         
-                               VM  strip shear,moment    
-  MRF  machine-readable format CPOM OML surface pressures
+  CH ordline    T       CA amber        F
+  CN tlpoint    F       TR ailing legs  F
+  BO ound leg   T       NO rmal vector  F
+  LO ading      F       AX es, xyz ref. T
 
- .OPER (case 1/1)   c>    Building normalwash AIC matrix...
-  Factoring normalwash AIC matrix...
-  Building source+doublet strength AIC matrix...
-  Building source+doublet velocity AIC matrix...
-  Building bound-vortex velocity matrix...
-
- iter d(alpha)   d(beta)    d(pb/2V)   d(qc/2V)   d(rb/2V)  
-   1 -0.000E+00 -0.000E+00  0.000E+00 -0.000E+00  0.000E+00
- ---------------------------------------------------------------
- Vortex Lattice Output -- Total Forces
-
- Configuration: TestPlane                                                   
-     # Surfaces =   2
-     # Strips   =  50
-     # Vortices = 500
-
-  Sref =  3.9414       Cref = 0.78828       Bref =  5.0000    
-  Xref =  0.0000       Yref =  0.0000       Zref =  0.0000    
-
- Standard axis orientation,  X fwd, Z down         
-
- Run case:  -unnamed-                              
-
-  Alpha =   0.00000     pb/2V =  -0.00000     p'b/2V =  -0.00000
-  Beta  =   0.00000     qc/2V =   0.00000
-  Mach  =     0.000     rb/2V =  -0.00000     r'b/2V =  -0.00000
-
-  CXtot =  -0.00349     Cltot =  -0.00000     Cl'tot =  -0.00000
-  CYtot =   0.00000     Cmtot =  -0.17812
-  CZtot =  -0.26309     Cntot =   0.00000     Cn'tot =   0.00000
-
-  CLtot =   0.26309
-  CDtot =   0.00349
-  CDvis =   0.00000     CDind = 0.0034853
-  CLff  =   0.26309     CDff  = 0.0034774    | Trefftz
-  CYff  =   0.00000         e =    0.9989    | Plane  
-
-
- ---------------------------------------------------------------
-
- Operation of run case 1/1:   -unnamed-                              
- ==========================================================
-
-  variable          constraint              
-  ------------      ------------------------
-  A lpha        ->  alpha       =   0.000         
-  B eta         ->  beta        =   0.000         
-  R oll  rate   ->  pb/2V       =   0.000         
-  P itch rate   ->  qc/2V       =   0.000         
-  Y aw   rate   ->  rb/2V       =   0.000         
-  ------------      ------------------------
-
-  C1  set level or banked  horizontal flight constraints
-  C2  set steady pitch rate (looping) flight constraints
-  M odify parameters                                    
-
- "#" select  run case          L ist defined run cases   
-  +  add new run case          S ave run cases to file   
-  -  delete  run case          F etch run cases from file
-  N ame current run case       W rite forces to file     
-
- eX ecute run case             I nitialize variables     
-
-  G eometry plot               T refftz Plane plot       
-
-  ST  stability derivatives    FT  total   forces        
-  SB  body-axis derivatives    FN  surface forces        
-  RE  reference quantities     FS  strip   forces        
-  DE  design changes           FE  element forces        
-  O ptions                     FB  body forces           
-                               HM  hinge moments         
-                               VM  strip shear,moment    
-  MRF  machine-readable format CPOM OML surface pressures
-
- .OPER (case 1/1)   c>  MRF: all subsequent output in full-precision machine readable format
-
- Operation of run case 1/1:   -unnamed-                              
- ==========================================================
-
-  variable          constraint              
-  ------------      ------------------------
-  A lpha        ->  alpha       =   0.000         
-  B eta         ->  beta        =   0.000         
-  R oll  rate   ->  pb/2V       =   0.000         
-  P itch rate   ->  qc/2V       =   0.000         
-  Y aw   rate   ->  rb/2V       =   0.000         
-  ------------      ------------------------
-
-  C1  set level or banked  horizontal flight constraints
-  C2  set steady pitch rate (looping) flight constraints
-  M odify parameters                                    
-
- "#" select  run case          L ist defined run cases   
-  +  add new run case          S ave run cases to file   
-  -  delete  run case          F etch run cases from file
-  N ame current run case       W rite forces to file     
-
- eX ecute run case             I nitialize variables     
-
-  G eometry plot               T refftz Plane plot       
-
-  ST  stability derivatives    FT  total   forces        
-  SB  body-axis derivatives    FN  surface forces        
-  RE  reference quantities     FS  strip   forces        
-  DE  design changes           FE  element forces        
-  O ptions                     FB  body forces           
-                               HM  hinge moments         
-                               VM  strip shear,moment    
-  MRF  machine-readable format CPOM OML surface pressures
-
- .OPER (case 1/1)   c>  
-Enter filename, or <return> for screen output   s>  
- File exists.  Append/Overwrite/Cancel  (A/O/C)?  C
-mrftot: fileid = TOT
-
- Operation of run case 1/1:   -unnamed-                              
- ==========================================================
-
-  variable          constraint              
-  ------------      ------------------------
-  A lpha        ->  alpha       =   0.000         
-  B eta         ->  beta        =   0.000         
-  R oll  rate   ->  pb/2V       =   0.000         
-  P itch rate   ->  qc/2V       =   0.000         
-  Y aw   rate   ->  rb/2V       =   0.000         
-  ------------      ------------------------
-
-  C1  set level or banked  horizontal flight constraints
-  C2  set steady pitch rate (looping) flight constraints
-  M odify parameters                                    
-
- "#" select  run case          L ist defined run cases   
-  +  add new run case          S ave run cases to file   
-  -  delete  run case          F etch run cases from file
-  N ame current run case       W rite forces to file     
-
- eX ecute run case             I nitialize variables     
-
-  G eometry plot               T refftz Plane plot       
-
-  ST  stability derivatives    FT  total   forces        
-  SB  body-axis derivatives    FN  surface forces        
-  RE  reference quantities     FS  strip   forces        
-  DE  design changes           FE  element forces        
-  O ptions                     FB  body forces           
-                               HM  hinge moments         
-                               VM  strip shear,moment    
-  MRF  machine-readable format CPOM OML surface pressures
-
- .OPER (case 1/1)   c>  
+ Geometry plot command: 

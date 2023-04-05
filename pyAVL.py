@@ -11,12 +11,18 @@ class Plane:
         # print(range(0,len(self.surfaces[0].sections[:-1])-2))
         # print(len(self.surfaces[0].sections))
         self.Sref = 0
-        for i in range(0,len(self.surfaces[0].sections)-1):
-
-            # self.Sref += self.surfaces.sections
-            self.Sref +=((self.surfaces[0].sections[i+1][1]+self.surfaces[0].sections[i][1])*(self.surfaces[0].sections[i+1][0][1]-self.surfaces[0].sections[i][0][1]))
+        self.Cref = 0
         self.Bref = 2*self.surfaces[0].sections[-1][0][1]
-        self.Cref = self.Sref/self.Bref
+        for i in range(0,len(self.surfaces[0].sections)-1):
+            c1=self.surfaces[0].sections[i][1]
+            c2=self.surfaces[0].sections[i+1][1]
+            b1=self.surfaces[0].sections[i][0][1]
+            b2=self.surfaces[0].sections[i+1][0][1]
+            # self.Sref += self.surfaces.sections
+            self.Sref +=((b2-b1)*(c1+c2))
+            self.Cref +=(c1**2+c1*(c2-c1)/2+(c2-c1)**2)*(b2-b1)
+        self.Cref = self.Cref*2/self.Bref
+        # self.Cref = self.Sref/self.Bref
         # for i = len(self.surfaces[0].sections[:-1])
         # self.Sref = self.surfaces[0].sections[:-1]
 
@@ -110,6 +116,7 @@ class AVL:
         # print(self.inputList)
     def clearInput(self):
         self.inputlist = ''
+    
     def runAVL(self):
         self.AVLsp = subprocess.Popen('avl.exe',
             shell=False,
@@ -130,7 +137,7 @@ class AVL:
                 out[newLine[j+h]] = float(newLine[j])
         FT.close()
         return out
-            
+
         # log = open('AVLsession.log').read()
         # os.path.getsize('AVLsession.log')
         # # print(len(log))
@@ -190,6 +197,16 @@ def CL(plane,CLs):
         return out
         AVLsp.clearInput()
     # AVLsp.readAVL(['e','Alpha','CLtot'])
+
+def showGeom(plane):
+    AVLsp = AVL()
+    AVLsp.addInput('load Planes\\{}\\{}'.format(plane,plane))
+    AVLsp.addInput('oper')
+    AVLsp.addInput('G')
+    AVLsp.addInput('H')
+    AVLsp.addInput('quit')
+    AVLsp.runAVL()
+    
 if __name__ == "__main__":
     name = 'TestPlane'
     # mach = 0
