@@ -13,35 +13,12 @@ import time
 #         self.Sref = 0
 #         for i in range(0,len(self.surfaces[0].sections)-1):
 
-<<<<<<< Updated upstream
-class Plane:
-    def __init__(self,surfaces):
-        self.surfaces = surfaces
-        # print(range(0,len(self.surfaces[0].sections[:-1])-2))
-        # print(len(self.surfaces[0].sections))
-        self.Sref = 0
-        self.Cref = 0
-        self.Bref = 2*self.surfaces[0].sections[-1][0][1]
-        for i in range(0,len(self.surfaces[0].sections)-1):
-            c1=self.surfaces[0].sections[i][1]
-            c2=self.surfaces[0].sections[i+1][1]
-            b1=self.surfaces[0].sections[i][0][1]
-            b2=self.surfaces[0].sections[i+1][0][1]
-            # self.Sref += self.surfaces.sections
-            self.Sref +=((b2-b1)*(c1+c2))
-            self.Cref +=(c1**2+c1*(c2-c1)/2+(c2-c1)**2)*(b2-b1)
-        self.Cref = self.Cref*2/self.Bref
-        # self.Cref = self.Sref/self.Bref
-        # for i = len(self.surfaces[0].sections[:-1])
-        # self.Sref = self.surfaces[0].sections[:-1]
-=======
 #             # self.Sref += self.surfaces.sections
 #             self.Sref +=((self.surfaces[0].sections[i+1][1]+self.surfaces[0].sections[i][1])*(self.surfaces[0].sections[i+1][0][1]-self.surfaces[0].sections[i][0][1]))
 #         self.Bref = 2*self.surfaces[0].sections[-1][0][1]
 #         self.Cref = self.Sref/self.Bref
 #         # for i = len(self.surfaces[0].sections[:-1])
 #         # self.Sref = self.surfaces[0].sections[:-1]
->>>>>>> Stashed changes
 
             
             
@@ -114,23 +91,12 @@ class Plane:
 #         print("Planes/{} folder created".format(name))
 
     
-<<<<<<< Updated upstream
-
-    with open('{}\\Planes\\{}\\{}.avl'.format(cd,name,name),'w') as file:
-        file.write('{}\n{}\n0 0 0\n{} {} {}\n0 0 0\n0\n'.format(name,mach,plane.Sref,plane.Cref,plane.Bref))
-        for surface in plane.surfaces:
-            file.write(WriteSurface(surface))
-
-        # file.writelines(ComponentHeader('MASS DEFINTION'))
-        # file.write(SectionHeader('MASS DEFINTION'))
-=======
 #     # Cref = 10/
     
 #     with open('{}\\Planes\\{}\\{}.avl'.format(cd,name,name),'w') as file:
 #         file.write('{}\n{}\n0 0 0\n{} {} {}\n0 0 0\n0\n'.format(name,mach,plane.Sref,plane.Cref,plane.Bref))
 #         for surface in plane.surfaces:
 #             file.write(WriteSurface(surface))
->>>>>>> Stashed changes
 
 #         # file.writelines(ComponentHeader('MASS DEFINTION'))
 #         # file.write(SectionHeader('MASS DEFINTION'))
@@ -145,136 +111,16 @@ class AVL:
         # print(self.inputList)
     def clearInput(self):
         self.inputlist = ''
-<<<<<<< Updated upstream
-    
-    def runAVL(self):
-=======
     def runAVL(self): # opens avl and runs all of the stored commands
->>>>>>> Stashed changes
         self.AVLsp = subprocess.Popen('avl.exe',
             shell=False,
             stdin=subprocess.PIPE,
             stdout=open('AVLsession.log', 'w'),         # Put the output of this terminal into the open log file
             stderr=subprocess.PIPE)
         self.AVLsp.stdin.write(self.inputList.encode('utf-8'))
+        print(self.inputList)
         self.AVLsp.stdin.flush()
         self.AVLsp.communicate()
-<<<<<<< Updated upstream
-    def readFT(self):
-        FT = open('FT.out')
-        FTout = FT.readlines()
-        out = {}
-        for i in [7,8,11,12,13,14,15,16,17,18,19,20]:
-            newLine = FTout[i].replace('\n','').replace(',',' ').replace('|',' ').replace('Trefftz Plane: ','').split()
-            h = int(len(newLine)/2) # get half length
-            for j in range(h):
-                out[newLine[j+h]] = float(newLine[j])
-        FT.close()
-        return out
-
-        # log = open('AVLsession.log').read()
-        # os.path.getsize('AVLsession.log')
-        # # print(len(log))
-        # start = log.rfind('  Alpha =')
-        # end = log.rfind('| Plane')
-        # caseOutput = log[start:end].replace('| Trefftz','').replace('=',' ').split()
-        # caseData = dict(zip(caseOutput[::2],list(map(float,caseOutput[1::2]))))
-        # return caseData
-        
-        
-    # def readAVL(self,varlist):
-    #     varlist = [var + ' = ' for var in varlist]
-    #     with open("{}\\AVLsession.log".format(self.cd),'r') as f:
-    #         print("{}\\AVLsession.log".format(self.cd))
-    #         log = f.read()
-    #         start = log.rfind(' Forces')+len(' Forces')
-    #         end = log.rfind('| Plane')
-    #         print(start,end)
-    #         for var in varlist:
-    #             print(var)
-    #             print(log.rfind(var,start,end))
-
-def alpha(plane,alphas):
-    AVLsp = AVL()
-    AVLsp.addInput('load Planes\\{}\\{}'.format(plane,plane))
-    AVLsp.addInput('oper')
-    for alpha in alphas:
-        AVLsp.addInput('A')
-        AVLsp.addInput('A')
-        AVLsp.addInput('{}'.format(alpha))
-        AVLsp.addInput('X')
-        AVLsp.addInput('MRF')
-        AVLsp.addInput('FT')
-        AVLsp.addInput('FT.out')
-        AVLsp.addInput('O')
-        AVLsp.runAVL()
-        out = AVLsp.readFT()
-        return out
-        AVLsp.clearInput()
-    # AVLsp.readAVL(['e','Alpha','CLtot'])
-
-def CL(plane,CLs):
-    AVLsp = AVL()
-    AVLsp.addInput('load Planes\\{}\\{}'.format(plane,plane))
-    AVLsp.addInput('oper')
-    for CL in CLs:
-        AVLsp.addInput('A')
-        AVLsp.addInput('C')
-        AVLsp.addInput('{}'.format(CL))
-        AVLsp.addInput('X')
-        AVLsp.addInput('MRF')
-        AVLsp.addInput('FT')
-        AVLsp.addInput('FT.out')
-        AVLsp.addInput('O')
-        AVLsp.runAVL()
-        out = AVLsp.readFT()
-        return out
-        AVLsp.clearInput()
-    # AVLsp.readAVL(['e','Alpha','CLtot'])
-
-def showGeom(plane):
-    AVLsp = AVL()
-    AVLsp.addInput('load Planes\\{}\\{}'.format(plane,plane))
-    AVLsp.addInput('oper')
-    AVLsp.addInput('G')
-    AVLsp.addInput('H')
-    AVLsp.addInput('quit')
-    AVLsp.runAVL()
-    
-if __name__ == "__main__":
-    name = 'TestPlane'
-    # mach = 0
-    # # sections = [[Xle,Yle,Zle],chord,angle,Nspan,Sspace,airfoil]
-    # mainWing = Surface('MainWing',1,1,[0,0,0],0,10,1,
-    #     [
-    #     [[0,0,0],1,0,10,1,'S4022.dat'],
-    #     [[.25,5,0],.5,0,10,1,'S4022.dat'],
-    # ])
-    # hStab = Surface('hStab',1,2,[5,0,.5],0,5,1,
-    #                 [
-    #     [[0,0,0],.5,0,10,1,'S4022.dat'],
-    #     [[.125,2,0],.25,0,10,1,'S4022.dat'],
-    #                 ])
-    # TestPlane = Plane([mainWing,hStab])
-
-    # # TestPlane = Plane(surfs,bodies)
-    # CreateAVLPlane(name,mach,TestPlane)
-    # AVLsp = AVL()
-    # AVLsp.addInput('load Planes/{}/{}.avl'.format(name,name))
-    # AVLsp.addInput('oper')
-    # AVLsp.addInput('A')
-    # AVLsp.addInput('C')
-    # AVLsp.addInput('.6')
-    # AVLsp.addInput('C1')
-    # AVLsp.addInput('X')
-    # AVLsp.addInput('1')
-    # AVLsp.addInput('')
-    # AVLsp.addInput('X')
-    # AVLsp.runAVL()
-
-
-    
-=======
 
         # log = open('AVLsession.log').read()
         # os.path.getsize('AVLsession.log')
@@ -302,7 +148,7 @@ if __name__ == "__main__":
         self.addInput('oper')
         self.addInput('M')
         self.addInput('G 32.17')  
-        self.addInput('V {]'.format(velocity))
+        self.addInput('V {}'.format(velocity))
         self.addInput('\n')
 
 '''
@@ -367,4 +213,3 @@ if __name__ == "__main__":
 # AVLsp.addInput('X')
 # AVLsp.runAVL()
 '''
->>>>>>> Stashed changes

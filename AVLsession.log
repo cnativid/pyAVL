@@ -33,83 +33,30 @@
 
    Building surface: Main Wing                               
      Reading airfoil from file: Airfoils/NACA 64-210.dat
-
-<<<<<<< Updated upstream
-   Building surface: mainWing                                
-     Reading airfoil from file: Airfoils\SD7037-092-88.dat
-     Reading airfoil from file: Airfoils\SD7037-092-88.dat
-     Reading airfoil from file: Airfoils\SD7037-092-88.dat
-=======
- File OPEN error:  Airfoils/NACA 6
- **   Airfoil file not found  : Airfoils/NACA 64-210.dat
- **   Using default zero-camber airfoil
      Reading airfoil from file: Airfoils/NACA 64-210.dat
-
- File OPEN error:  Airfoils/NACA 6
- **   Airfoil file not found  : Airfoils/NACA 64-210.dat
- **   Using default zero-camber airfoil
      Reading airfoil from file: Airfoils/NACA 64-210.dat
-
- File OPEN error:  Airfoils/NACA 6
- **   Airfoil file not found  : Airfoils/NACA 64-210.dat
- **   Using default zero-camber airfoil
      Reading airfoil from file: Airfoils/NACA 64-210.dat
-
- File OPEN error:  Airfoils/NACA 6
- **   Airfoil file not found  : Airfoils/NACA 64-210.dat
- **   Using default zero-camber airfoil
      Reading airfoil from file: Airfoils/NACA 64-210.dat
-
- File OPEN error:  Airfoils/NACA 6
- **   Airfoil file not found  : Airfoils/NACA 64-210.dat
- **   Using default zero-camber airfoil
->>>>>>> Stashed changes
   
    Building duplicate image-surface: Main Wing (YDUP)                        
 
    Building surface: Elevator                                
      Reading airfoil from file: Airfoils/NACA 0012.dat
-
- File OPEN error:  Airfoils/NACA 0
- **   Airfoil file not found  : Airfoils/NACA 0012.dat
- **   Using default zero-camber airfoil
      Reading airfoil from file: Airfoils/NACA 0012.dat
-
- File OPEN error:  Airfoils/NACA 0
- **   Airfoil file not found  : Airfoils/NACA 0012.dat
- **   Using default zero-camber airfoil
   
    Building duplicate image-surface: Elevator (YDUP)                         
 
    Building surface: Fin                                     
      Reading airfoil from file: Airfoils/NACA 0012.dat
-
- File OPEN error:  Airfoils/NACA 0
- **   Airfoil file not found  : Airfoils/NACA 0012.dat
- **   Using default zero-camber airfoil
      Reading airfoil from file: Airfoils/NACA 0012.dat
-
- File OPEN error:  Airfoils/NACA 0
- **   Airfoil file not found  : Airfoils/NACA 0012.dat
- **   Using default zero-camber airfoil
      Reading airfoil from file: Airfoils/NACA 0012.dat
-
- File OPEN error:  Airfoils/NACA 0
- **   Airfoil file not found  : Airfoils/NACA 0012.dat
- **   Using default zero-camber airfoil
 
  Mach =    0.0000  (default)
 
     0 Bodies
-<<<<<<< Updated upstream
-    2 Solid surfaces
-   60 Strips
-  900 Vortices
-=======
     5 Solid surfaces
   132 Strips
  1428 Vortices
->>>>>>> Stashed changes
 
     0 Control variables
     0 Design parameters
@@ -152,20 +99,6 @@
   MRF  machine-readable format CPOM OML surface pressures
 
  .OPER (case 1/1)   c>  
-<<<<<<< Updated upstream
- =========================================
-  K eystroke mode       V iewpoint        
-  A nnotate plot        O ptions          
-  H ardcopy plot        S elect surfaces  
-  Z oom                 U nzoom           
-
-  CH ordline    T       CA amber        F
-  CN tlpoint    F       TR ailing legs  F
-  BO ound leg   T       NO rmal vector  F
-  LO ading      F       AX es, xyz ref. T
-
- Geometry plot command:  Writing   PostScript to file  plot.ps ...
-=======
      Parameters of run case 1/1:   -unnamed-                              
       B  bank      =  0.000      deg
       E  elevation =  0.000      deg
@@ -187,7 +120,6 @@
       MU dCM_u     =  0.000       
 
      Enter parameter, value  (or  # - + N )   c>  
-      Enter gravity   r>  
      Parameters of run case 1/1:   -unnamed-                              
       B  bank      =  0.000      deg
       E  elevation =  0.000      deg
@@ -209,7 +141,6 @@
       MU dCM_u     =  0.000       
 
      Enter parameter, value  (or  # - + N )   c>  
-      Enter air density   r>  
      Parameters of run case 1/1:   -unnamed-                              
       B  bank      =  0.000      deg
       E  elevation =  0.000      deg
@@ -233,37 +164,38 @@
      Enter parameter, value  (or  # - + N )   c>  
  Operation of run case 1/1:   -unnamed-                              
  ==========================================================
->>>>>>> Stashed changes
 
- =========================================
-  K eystroke mode       V iewpoint        
-  A nnotate plot        O ptions          
-  H ardcopy plot        S elect surfaces  
-  Z oom                 U nzoom           
+  variable          constraint              
+  ------------      ------------------------
+  A lpha        ->  alpha       =   0.000         
+  B eta         ->  beta        =   0.000         
+  R oll  rate   ->  pb/2V       =   0.000         
+  P itch rate   ->  qc/2V       =   0.000         
+  Y aw   rate   ->  rb/2V       =   0.000         
+  ------------      ------------------------
 
-  CH ordline    T       CA amber        F
-  CN tlpoint    F       TR ailing legs  F
-  BO ound leg   T       NO rmal vector  F
-  LO ading      F       AX es, xyz ref. T
+  C1  set level or banked  horizontal flight constraints
+  C2  set steady pitch rate (looping) flight constraints
+  M odify parameters                                    
 
- Geometry plot command:   * Unrecognized command
+ "#" select  run case          L ist defined run cases   
+  +  add new run case          S ave run cases to file   
+  -  delete  run case          F etch run cases from file
+  N ame current run case       W rite forces to file     
 
- X-window size changed to  11.00" x  8.21"
+ eX ecute run case             I nitialize variables     
 
- =========================================
-  K eystroke mode       V iewpoint        
-  A nnotate plot        O ptions          
-  H ardcopy plot        S elect surfaces  
-  Z oom                 U nzoom           
+  G eometry plot               T refftz Plane plot       
 
-  CH ordline    T       CA amber        F
-  CN tlpoint    F       TR ailing legs  F
-  BO ound leg   T       NO rmal vector  F
-  LO ading      F       AX es, xyz ref. T
+  ST  stability derivatives    FT  total   forces        
+  SB  body-axis derivatives    FN  surface forces        
+  RE  reference quantities     FS  strip   forces        
+  DE  design changes           FE  element forces        
+  O ptions                     FB  body forces           
+                               HM  hinge moments         
+                               VM  strip shear,moment    
+  MRF  machine-readable format CPOM OML surface pressures
 
-<<<<<<< Updated upstream
- Geometry plot command: 
-=======
  .OPER (case 1/1)   c>  
  AVL   c>  
  Operation of run case 1/1:   -unnamed-                              
@@ -322,7 +254,6 @@
       MU dCM_u     =  0.000       
 
      Enter parameter, value  (or  # - + N )   c>  
-      Enter gravity   r>  
      Parameters of run case 1/1:   -unnamed-                              
       B  bank      =  0.000      deg
       E  elevation =  0.000      deg
@@ -344,7 +275,6 @@
       MU dCM_u     =  0.000       
 
      Enter parameter, value  (or  # - + N )   c>  
-      Enter velocity   r>  
      Parameters of run case 1/1:   -unnamed-                              
       B  bank      =  0.000      deg
       E  elevation =  0.000      deg
@@ -402,4 +332,58 @@
 
  .OPER (case 1/1)   c>  
  AVL   c>  
->>>>>>> Stashed changes
+ Operation of run case 1/1:   -unnamed-                              
+ ==========================================================
+
+  variable          constraint              
+  ------------      ------------------------
+  A lpha        ->  alpha       =   0.000         
+  B eta         ->  beta        =   0.000         
+  R oll  rate   ->  pb/2V       =   0.000         
+  P itch rate   ->  qc/2V       =   0.000         
+  Y aw   rate   ->  rb/2V       =   0.000         
+  ------------      ------------------------
+
+  C1  set level or banked  horizontal flight constraints
+  C2  set steady pitch rate (looping) flight constraints
+  M odify parameters                                    
+
+ "#" select  run case          L ist defined run cases   
+  +  add new run case          S ave run cases to file   
+  -  delete  run case          F etch run cases from file
+  N ame current run case       W rite forces to file     
+
+ eX ecute run case             I nitialize variables     
+
+  G eometry plot               T refftz Plane plot       
+
+  ST  stability derivatives    FT  total   forces        
+  SB  body-axis derivatives    FN  surface forces        
+  RE  reference quantities     FS  strip   forces        
+  DE  design changes           FE  element forces        
+  O ptions                     FB  body forces           
+                               HM  hinge moments         
+                               VM  strip shear,moment    
+  MRF  machine-readable format CPOM OML surface pressures
+
+ .OPER (case 1/1)   c>  
+     .. setting new CL for run case  1
+     .. setting new turn radius for run case  1
+     .. setting new load factor for run case  1
+
+     Setup of trimmed run case 1/1:   -unnamed-                              
+     (level or banked horizontal flight)
+     =================================================
+      B  bank angle =  0.000      deg
+      C  CL         = 0.1511E-03   
+      V  velocity   =  464.1      Lunit/Tunit
+      M  mass       =  1.000      Munit
+      D  air dens.  = 0.2377E-02  Munit/Lunit^3
+      G  grav.acc.  =  32.17      Lunit/Tunit^2
+         turn rad.  =  0.000      Lunit
+         load fac.  =  1.000       
+      X  X_cg       =  0.000      Lunit
+      Y  Y_cg       =  0.000      Lunit
+      Z  Z_cg       =  0.000      Lunit
+
+     Enter parameter, value  (or  # - + N )   c>  
