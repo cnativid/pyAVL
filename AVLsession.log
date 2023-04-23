@@ -55,13 +55,22 @@
 
     0 Bodies
     5 Solid surfaces
-  132 Strips
- 1428 Vortices
+  170 Strips
+ 2510 Vortices
 
     0 Control variables
     0 Design parameters
 
  Initializing run cases...
+
+ AVL   c>  
+ Reading file: Planes\STARTG01\STARTG01.mass  ...
+
+ Configuration: Lunit = 1 ft                                                
+
+ ** Read error on line    2 ...
+ Munit = 0.0311 slug
+ ** File not processed. Current geometry may be corrupted.
 
  AVL   c>  
  Operation of run case 1/1:   -unnamed-                              
