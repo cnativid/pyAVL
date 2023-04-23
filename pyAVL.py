@@ -136,13 +136,19 @@ class AVL:
     def loadPlane(self,plane):
         self.addInput('load Planes\\{}\\{}.avl'.format(plane,plane))
     def loadMass(self,plane):
-        self.addInput('load Planes\\{}\\{}.mass'.format(plane,plane))
+        self.addInput('mass Planes\\{}\\{}.mass'.format(plane,plane))
+        self.addInput('mset\n0')
     def setAtmosphere(self,altitude=0,temp_offset=0):
+        # convert to units
+        altitude = altitude/3.28084 # ft to m
+        temp_offset = 5/9*(temp_offset-32) # F to C
+
         self.addInput('oper')
         self.addInput('M')
         self.addInput('G 32.17')
-        atmo = Atmosphere(altitude) 
-        self.addInput('D {}'.format(atmo.density[0]/515.378819))
+        atmo = Atmosphere(altitude)
+        print((atmo.temperature/(atmo.temperature+temp_offset)))
+        self.addInput('D {}'.format((atmo.temperature[0]/(atmo.temperature[0]+temp_offset))*atmo.density[0]/515.378819))
         self.addInput('\n')
     def setVelocity(self,velocity):
         self.addInput('oper')
