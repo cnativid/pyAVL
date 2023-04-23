@@ -3,7 +3,28 @@ import openmdao.api as om
 sys.path.append('path/to/pyAVL.py')
 import pyAVL
 
+<<<<<<< Updated upstream
 PlaneName = 'TestPlane'
+=======
+# sections = [[Xle,Yle,Zle],chord,angle,Nspan,Sspace,airfoil]
+def taperstudy(span,taper):
+    print(span,taper)
+    mainWing = pyAVL.Surface('mainWing',1,1,[0,0,0],0,20,1,
+        [
+        [[0,0,0],1,0,20,1,'NACA0012.dat'],
+        [[ (1-taper[0])/4 ,span[0]/2,0],taper[0],0,20,1,'NACA0012.dat'],
+    ])
+    TestPlane = pyAVL.Plane([mainWing])
+    pyAVL.CreateAVLPlane('TestPlane',0,TestPlane)
+    # CLs = [.5]
+    # output = pyAVL.CL('TestPlane',CLs)
+    alphas = [5]
+    output = pyAVL.alpha('TestPlane',alphas)    
+    # print(output)
+    optdat = output['e']
+    print(output['Alpha'],optdat)
+    return optdat
+>>>>>>> Stashed changes
 
 
 # sections = [[Xle,Yle,Zle],chord,angle,Nspan,Sspace,airfoil]
@@ -42,8 +63,13 @@ class OptProblem(om.ExplicitComponent):
     """
 
     def setup(self):
+<<<<<<< Updated upstream
         self.add_input('span',val=1)
         self.add_input('chord',val=[1,1,1])
+=======
+        self.add_input('taper',val=1)
+        self.add_input('span',val=1)
+>>>>>>> Stashed changes
 
         self.add_output('optFun',val=0)
 
@@ -51,6 +77,7 @@ class OptProblem(om.ExplicitComponent):
         self.declare_partials('*','*',method='fd')
 
     def compute(self, inputs, outputs):
+<<<<<<< Updated upstream
         span = inputs['span']
         chord = inputs['chord']
 
@@ -59,11 +86,19 @@ class OptProblem(om.ExplicitComponent):
         optFun = out['e']
         print(optFun)
         outputs['optFun'] = optFun
+=======
+        taper = inputs['taper']
+        span = inputs['span']
+
+        outputs['CLCD'] = taperstudy(span,taper)
+    
+>>>>>>> Stashed changes
     
 
 if __name__ == "__main__":
     pyAVL.showGeom(PlaneName)
     prob = om.Problem()
+<<<<<<< Updated upstream
     prob.model.add_subsystem('OptFun', OptProblem(), promotes_inputs=['span','chord'])
 
     prob.model.set_input_defaults('chord',[1,1,1])
@@ -77,6 +112,20 @@ if __name__ == "__main__":
     prob.model.add_design_var('chord',lower = 0.01, upper = 1)
     # prob.model.add_design_var('span',lower = 1, upper = 10)
     prob.model.add_objective('OptFun.optFun',scaler=-1)
+=======
+    prob.model.add_subsystem('CLCDOpt', OptProblem(), promotes_inputs=['taper','span'])
+
+    prob.model.set_input_defaults('taper',.5)
+    prob.model.set_input_defaults('span',10)
+
+    prob.driver = om.ScipyOptimizeDriver()
+    prob.driver.options['optimizer'] = 'COBYLA'
+    # prob.driver.options['tol'] = 1e-3
+
+    prob.model.add_design_var('taper',lower = 0.15, upper = 1)
+    # prob.model.add_design_var('span',lower = 1, upper = 7)
+    prob.model.add_objective('CLCDOpt.CLCD',scaler=-1)
+>>>>>>> Stashed changes
 
     prob.setup()
     prob.run_driver();

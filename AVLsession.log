@@ -27,26 +27,89 @@
    NAME s  Specify new configuration name
 
  AVL   c>  
- ** Open error on file: Planes\TestPlane\TestPlane
-    Trying alternative: Planes\TestPlane\TestPlane.avl
+ Reading file: Planes\STARTG01\STARTG01.avl  ...
 
- Reading file: Planes\TestPlane\TestPlane.avl  ...
+ Configuration: STARTG01                                                    
 
- Configuration: TestPlane                                                   
+   Building surface: Main Wing                               
+     Reading airfoil from file: Airfoils/NACA 64-210.dat
 
+<<<<<<< Updated upstream
    Building surface: mainWing                                
      Reading airfoil from file: Airfoils\SD7037-092-88.dat
      Reading airfoil from file: Airfoils\SD7037-092-88.dat
      Reading airfoil from file: Airfoils\SD7037-092-88.dat
+=======
+ File OPEN error:  Airfoils/NACA 6
+ **   Airfoil file not found  : Airfoils/NACA 64-210.dat
+ **   Using default zero-camber airfoil
+     Reading airfoil from file: Airfoils/NACA 64-210.dat
+
+ File OPEN error:  Airfoils/NACA 6
+ **   Airfoil file not found  : Airfoils/NACA 64-210.dat
+ **   Using default zero-camber airfoil
+     Reading airfoil from file: Airfoils/NACA 64-210.dat
+
+ File OPEN error:  Airfoils/NACA 6
+ **   Airfoil file not found  : Airfoils/NACA 64-210.dat
+ **   Using default zero-camber airfoil
+     Reading airfoil from file: Airfoils/NACA 64-210.dat
+
+ File OPEN error:  Airfoils/NACA 6
+ **   Airfoil file not found  : Airfoils/NACA 64-210.dat
+ **   Using default zero-camber airfoil
+     Reading airfoil from file: Airfoils/NACA 64-210.dat
+
+ File OPEN error:  Airfoils/NACA 6
+ **   Airfoil file not found  : Airfoils/NACA 64-210.dat
+ **   Using default zero-camber airfoil
+>>>>>>> Stashed changes
   
-   Building duplicate image-surface: mainWing (YDUP)                         
+   Building duplicate image-surface: Main Wing (YDUP)                        
+
+   Building surface: Elevator                                
+     Reading airfoil from file: Airfoils/NACA 0012.dat
+
+ File OPEN error:  Airfoils/NACA 0
+ **   Airfoil file not found  : Airfoils/NACA 0012.dat
+ **   Using default zero-camber airfoil
+     Reading airfoil from file: Airfoils/NACA 0012.dat
+
+ File OPEN error:  Airfoils/NACA 0
+ **   Airfoil file not found  : Airfoils/NACA 0012.dat
+ **   Using default zero-camber airfoil
+  
+   Building duplicate image-surface: Elevator (YDUP)                         
+
+   Building surface: Fin                                     
+     Reading airfoil from file: Airfoils/NACA 0012.dat
+
+ File OPEN error:  Airfoils/NACA 0
+ **   Airfoil file not found  : Airfoils/NACA 0012.dat
+ **   Using default zero-camber airfoil
+     Reading airfoil from file: Airfoils/NACA 0012.dat
+
+ File OPEN error:  Airfoils/NACA 0
+ **   Airfoil file not found  : Airfoils/NACA 0012.dat
+ **   Using default zero-camber airfoil
+     Reading airfoil from file: Airfoils/NACA 0012.dat
+
+ File OPEN error:  Airfoils/NACA 0
+ **   Airfoil file not found  : Airfoils/NACA 0012.dat
+ **   Using default zero-camber airfoil
 
  Mach =    0.0000  (default)
 
     0 Bodies
+<<<<<<< Updated upstream
     2 Solid surfaces
    60 Strips
   900 Vortices
+=======
+    5 Solid surfaces
+  132 Strips
+ 1428 Vortices
+>>>>>>> Stashed changes
 
     0 Control variables
     0 Design parameters
@@ -89,6 +152,7 @@
   MRF  machine-readable format CPOM OML surface pressures
 
  .OPER (case 1/1)   c>  
+<<<<<<< Updated upstream
  =========================================
   K eystroke mode       V iewpoint        
   A nnotate plot        O ptions          
@@ -101,6 +165,75 @@
   LO ading      F       AX es, xyz ref. T
 
  Geometry plot command:  Writing   PostScript to file  plot.ps ...
+=======
+     Parameters of run case 1/1:   -unnamed-                              
+      B  bank      =  0.000      deg
+      E  elevation =  0.000      deg
+      MN Mach no.  =  0.000       
+      V  velocity  =  0.000      Lunit/Tunit
+      D  air dens. =  1.000      Munit/Lunit^3
+      G  grav.acc. =  1.000      Lunit/Tunit^2
+      M  mass      =  1.000      Munit
+      IX Ixx       =  1.000      Munit-Lunit^2
+      IY Iyy       =  1.000      Munit-Lunit^2
+      IZ Izz       =  1.000      Munit-Lunit^2
+      X  X_cg      =  0.000      Lunit
+      Y  Y_cg      =  0.000      Lunit
+      Z  Z_cg      =  0.000      Lunit
+      CD CDo       =  0.000       
+      LA dCL_a     =  0.000       
+      LU dCL_u     =  0.000       
+      MA dCM_a     =  0.000       
+      MU dCM_u     =  0.000       
+
+     Enter parameter, value  (or  # - + N )   c>  
+      Enter gravity   r>  
+     Parameters of run case 1/1:   -unnamed-                              
+      B  bank      =  0.000      deg
+      E  elevation =  0.000      deg
+      MN Mach no.  =  0.000       
+      V  velocity  =  0.000      Lunit/Tunit
+      D  air dens. =  1.000      Munit/Lunit^3
+      G  grav.acc. =  32.17      Lunit/Tunit^2
+      M  mass      =  1.000      Munit
+      IX Ixx       =  1.000      Munit-Lunit^2
+      IY Iyy       =  1.000      Munit-Lunit^2
+      IZ Izz       =  1.000      Munit-Lunit^2
+      X  X_cg      =  0.000      Lunit
+      Y  Y_cg      =  0.000      Lunit
+      Z  Z_cg      =  0.000      Lunit
+      CD CDo       =  0.000       
+      LA dCL_a     =  0.000       
+      LU dCL_u     =  0.000       
+      MA dCM_a     =  0.000       
+      MU dCM_u     =  0.000       
+
+     Enter parameter, value  (or  # - + N )   c>  
+      Enter air density   r>  
+     Parameters of run case 1/1:   -unnamed-                              
+      B  bank      =  0.000      deg
+      E  elevation =  0.000      deg
+      MN Mach no.  =  0.000       
+      V  velocity  =  0.000      Lunit/Tunit
+      D  air dens. = 0.2377E-02  Munit/Lunit^3
+      G  grav.acc. =  32.17      Lunit/Tunit^2
+      M  mass      =  1.000      Munit
+      IX Ixx       =  1.000      Munit-Lunit^2
+      IY Iyy       =  1.000      Munit-Lunit^2
+      IZ Izz       =  1.000      Munit-Lunit^2
+      X  X_cg      =  0.000      Lunit
+      Y  Y_cg      =  0.000      Lunit
+      Z  Z_cg      =  0.000      Lunit
+      CD CDo       =  0.000       
+      LA dCL_a     =  0.000       
+      LU dCL_u     =  0.000       
+      MA dCM_a     =  0.000       
+      MU dCM_u     =  0.000       
+
+     Enter parameter, value  (or  # - + N )   c>  
+ Operation of run case 1/1:   -unnamed-                              
+ ==========================================================
+>>>>>>> Stashed changes
 
  =========================================
   K eystroke mode       V iewpoint        
@@ -128,4 +261,145 @@
   BO ound leg   T       NO rmal vector  F
   LO ading      F       AX es, xyz ref. T
 
+<<<<<<< Updated upstream
  Geometry plot command: 
+=======
+ .OPER (case 1/1)   c>  
+ AVL   c>  
+ Operation of run case 1/1:   -unnamed-                              
+ ==========================================================
+
+  variable          constraint              
+  ------------      ------------------------
+  A lpha        ->  alpha       =   0.000         
+  B eta         ->  beta        =   0.000         
+  R oll  rate   ->  pb/2V       =   0.000         
+  P itch rate   ->  qc/2V       =   0.000         
+  Y aw   rate   ->  rb/2V       =   0.000         
+  ------------      ------------------------
+
+  C1  set level or banked  horizontal flight constraints
+  C2  set steady pitch rate (looping) flight constraints
+  M odify parameters                                    
+
+ "#" select  run case          L ist defined run cases   
+  +  add new run case          S ave run cases to file   
+  -  delete  run case          F etch run cases from file
+  N ame current run case       W rite forces to file     
+
+ eX ecute run case             I nitialize variables     
+
+  G eometry plot               T refftz Plane plot       
+
+  ST  stability derivatives    FT  total   forces        
+  SB  body-axis derivatives    FN  surface forces        
+  RE  reference quantities     FS  strip   forces        
+  DE  design changes           FE  element forces        
+  O ptions                     FB  body forces           
+                               HM  hinge moments         
+                               VM  strip shear,moment    
+  MRF  machine-readable format CPOM OML surface pressures
+
+ .OPER (case 1/1)   c>  
+     Parameters of run case 1/1:   -unnamed-                              
+      B  bank      =  0.000      deg
+      E  elevation =  0.000      deg
+      MN Mach no.  =  0.000       
+      V  velocity  =  0.000      Lunit/Tunit
+      D  air dens. = 0.2377E-02  Munit/Lunit^3
+      G  grav.acc. =  32.17      Lunit/Tunit^2
+      M  mass      =  1.000      Munit
+      IX Ixx       =  1.000      Munit-Lunit^2
+      IY Iyy       =  1.000      Munit-Lunit^2
+      IZ Izz       =  1.000      Munit-Lunit^2
+      X  X_cg      =  0.000      Lunit
+      Y  Y_cg      =  0.000      Lunit
+      Z  Z_cg      =  0.000      Lunit
+      CD CDo       =  0.000       
+      LA dCL_a     =  0.000       
+      LU dCL_u     =  0.000       
+      MA dCM_a     =  0.000       
+      MU dCM_u     =  0.000       
+
+     Enter parameter, value  (or  # - + N )   c>  
+      Enter gravity   r>  
+     Parameters of run case 1/1:   -unnamed-                              
+      B  bank      =  0.000      deg
+      E  elevation =  0.000      deg
+      MN Mach no.  =  0.000       
+      V  velocity  =  0.000      Lunit/Tunit
+      D  air dens. = 0.2377E-02  Munit/Lunit^3
+      G  grav.acc. =  32.17      Lunit/Tunit^2
+      M  mass      =  1.000      Munit
+      IX Ixx       =  1.000      Munit-Lunit^2
+      IY Iyy       =  1.000      Munit-Lunit^2
+      IZ Izz       =  1.000      Munit-Lunit^2
+      X  X_cg      =  0.000      Lunit
+      Y  Y_cg      =  0.000      Lunit
+      Z  Z_cg      =  0.000      Lunit
+      CD CDo       =  0.000       
+      LA dCL_a     =  0.000       
+      LU dCL_u     =  0.000       
+      MA dCM_a     =  0.000       
+      MU dCM_u     =  0.000       
+
+     Enter parameter, value  (or  # - + N )   c>  
+      Enter velocity   r>  
+     Parameters of run case 1/1:   -unnamed-                              
+      B  bank      =  0.000      deg
+      E  elevation =  0.000      deg
+      MN Mach no.  =  0.000       
+      V  velocity  =  464.1      Lunit/Tunit
+      D  air dens. = 0.2377E-02  Munit/Lunit^3
+      G  grav.acc. =  32.17      Lunit/Tunit^2
+      M  mass      =  1.000      Munit
+      IX Ixx       =  1.000      Munit-Lunit^2
+      IY Iyy       =  1.000      Munit-Lunit^2
+      IZ Izz       =  1.000      Munit-Lunit^2
+      X  X_cg      =  0.000      Lunit
+      Y  Y_cg      =  0.000      Lunit
+      Z  Z_cg      =  0.000      Lunit
+      CD CDo       =  0.000       
+      LA dCL_a     =  0.000       
+      LU dCL_u     =  0.000       
+      MA dCM_a     =  0.000       
+      MU dCM_u     =  0.000       
+
+     Enter parameter, value  (or  # - + N )   c>  
+ Operation of run case 1/1:   -unnamed-                              
+ ==========================================================
+
+  variable          constraint              
+  ------------      ------------------------
+  A lpha        ->  alpha       =   0.000         
+  B eta         ->  beta        =   0.000         
+  R oll  rate   ->  pb/2V       =   0.000         
+  P itch rate   ->  qc/2V       =   0.000         
+  Y aw   rate   ->  rb/2V       =   0.000         
+  ------------      ------------------------
+
+  C1  set level or banked  horizontal flight constraints
+  C2  set steady pitch rate (looping) flight constraints
+  M odify parameters                                    
+
+ "#" select  run case          L ist defined run cases   
+  +  add new run case          S ave run cases to file   
+  -  delete  run case          F etch run cases from file
+  N ame current run case       W rite forces to file     
+
+ eX ecute run case             I nitialize variables     
+
+  G eometry plot               T refftz Plane plot       
+
+  ST  stability derivatives    FT  total   forces        
+  SB  body-axis derivatives    FN  surface forces        
+  RE  reference quantities     FS  strip   forces        
+  DE  design changes           FE  element forces        
+  O ptions                     FB  body forces           
+                               HM  hinge moments         
+                               VM  strip shear,moment    
+  MRF  machine-readable format CPOM OML surface pressures
+
+ .OPER (case 1/1)   c>  
+ AVL   c>  
+>>>>>>> Stashed changes

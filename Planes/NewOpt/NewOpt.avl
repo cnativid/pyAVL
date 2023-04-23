@@ -1,0 +1,152 @@
+# 
+# Note : check consistency of area unit and length units in this file
+# Note : check consistency with inertia units of the .mass file
+# 
+# 
+NewOpt
+0.0                                 # Mach
+0     0     0.0                     # iYsym  iZsym  Zsym
+  3.77855     0.77855     4.88143   # Sref   Cref   Bref
+ -0.32811    0.00000    -0.13555   # Xref   Yref   Zref
+
+
+#
+SURFACE                      # (keyword)
+Main Wing
+#Nchord    Cspace   [ Nspan Sspace ]
+21        1.0
+
+COMPONENT                        # (keyword)
+1                         # Lsurf
+
+YDUPLICATE
+0.0
+
+SCALE
+1.0  1.0  1.0
+
+TRANSLATE
+0.0  0.0  0.0
+
+ANGLE
+0.000                         # dAinc
+
+#____PANEL 1_______
+#______________
+SECTION                                                     #  (keyword)
+0.0000    0.0000    0.0000    0.8511   0.000    5    1   # Xle Yle Zle   Chord Ainc   [ Nspan Sspace ]
+
+AFILE
+Airfoils/SD7037-092-88 10%t 1c.dat
+
+
+
+
+#____PANEL 2_______
+#______________
+SECTION                                                     #  (keyword)
+0.0000    0.3869    0.0000    0.8511   0.000   42    3   # Xle Yle Zle   Chord Ainc   [ Nspan Sspace ]
+
+AFILE
+Airfoils/SD7037-092-88 10%t 1c.dat
+
+
+#______________
+SECTION                                                     #  (keyword)
+0.0460    2.4407    0.0000    0.6680   0.000   42    3   # Xle Yle Zle   Chord Ainc   [ Nspan Sspace ]
+
+AFILE 
+Airfoils/SD7037-092-88 12%t 1c.dat
+
+
+
+
+#
+SURFACE                      # (keyword)
+Elevator
+#Nchord    Cspace   [ Nspan Sspace ]
+21        1.0
+
+COMPONENT                        # (keyword)
+2                         # Lsurf
+
+YDUPLICATE
+0.0
+
+SCALE
+1.0  1.0  1.0
+
+TRANSLATE
+0.0  0.0  0.0
+
+ANGLE
+0.180                         # dAinc
+
+
+#____PANEL 1_______
+#______________
+SECTION                                                     #  (keyword)
+-1.3458    0.0000   -0.1000    0.5937   0.000   16    1   # Xle Yle Zle   Chord Ainc   [ Nspan Sspace ]
+
+AFILE 
+Airfoils/SD7037-092-88 10%t 2c.dat
+
+
+
+
+#____PANEL 2_______
+#______________
+SECTION                                                     #  (keyword)
+-1.3458    0.3869   -0.1000    0.5937   0.000   15    3   # Xle Yle Zle   Chord Ainc   [ Nspan Sspace ]
+
+AFILE
+Airfoils/SD7037-092-88 10%t 2c.dat
+
+
+#______________
+SECTION                                                     #  (keyword)
+-1.3098    1.3494   -0.1001    0.4500   0.000   15    3   # Xle Yle Zle   Chord Ainc   [ Nspan Sspace ]
+
+AFILE 
+Airfoils/SD7037-092-88 10%t 2c.dat
+
+
+
+
+#========TODO: REMOVE OR MODIFY MANUALLY DUPLICATE SECTIONS IN SURFACE DEFINITION=========
+SURFACE                      # (keyword)
+Fin
+#Nchord    Cspace   [ Nspan Sspace ]
+15        1.0
+
+COMPONENT                        # (keyword)
+3                         # Lsurf
+
+SCALE
+1.0  1.0  1.0
+
+TRANSLATE
+0.0  0.0  0.0
+
+ANGLE
+0.000                         # dAinc
+
+
+#____PANEL 1_______
+#______________
+SECTION                                                     #  (keyword)
+1.2319   -0.0000    1.1606    0.7737   0.000   15    0   # Xle Yle Zle   Chord Ainc   [ Nspan Sspace ]
+
+AFILE
+Airfoils/NACA 0010.dat
+
+
+#______________
+SECTION                                                     #  (keyword)
+1.2319    0.0000    0.0000    0.7737   0.000   15    0   # Xle Yle Zle   Chord Ainc   [ Nspan Sspace ]
+
+AFILE
+Airfoils/NACA 0012.dat
+
+
+
