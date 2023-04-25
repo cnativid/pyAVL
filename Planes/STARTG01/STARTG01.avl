@@ -31,7 +31,7 @@ TRANSLATE
 0.0  0.0  0.0
 
 ANGLE
-   0.000                         | dAinc
+   3.5                        | dAinc
 
 
 #____PANEL 1_______
@@ -42,14 +42,45 @@ SECTION                                                     |  (keyword)
 AFIL 0.0 1.0
 Airfoils/NACA 64-210.dat
 
+CONTROL 
+inboard_slat 1.0 -0.1 0. 0. 0. 1.0 ! name , gain , Xhinge , XYZhvec , SgnDup
+
+CONTROL 
+inboard_flap 1.0 0.75 0. 0. 0. 1.0 ! name , gain , Xhinge , XYZhvec , SgnDup
 
 #____PANEL 2_______
 #______________
 SECTION                                                     |  (keyword)
-   0.9980   11.4220    0.0000    9.3026   0.000   30    3   | Xle Yle Zle   Chord Ainc   [ Nspan Sspace ]
+   0.9980   11.4220    0.0000    9.3026   0.000   15    0   | Xle Yle Zle   Chord Ainc   [ Nspan Sspace ]
 
 AFIL 0.0 1.0
 Airfoils/NACA 64-210.dat
+
+CONTROL 
+inboard_slat 1.0 -0.1 0. 0. 0. 1.0 ! name , gain , Xhinge , XYZhvec , SgnDup
+
+CONTROL 
+inboard_flap 1.0 0.75 0. 0. 0. 1.0 ! name , gain , Xhinge , XYZhvec , SgnDup
+
+CONTROL 
+outboard_slat 1.0 -0.1 0. 0. 0. 1.0 ! name , gain , Xhinge , XYZhvec , SgnDup
+
+CONTROL 
+outboard_flap 1.0 0.75 0. 0. 0. 1.0 ! name , gain , Xhinge , XYZhvec , SgnDup
+
+
+
+SECTION                                                     |  (keyword)
+   2.997   34.267    0.0000    6.512   0.000    15    0   | Xle Yle Zle   Chord Ainc   [ Nspan Sspace ]
+
+AFIL 0.0 1.0
+Airfoils/NACA 64-210.dat
+
+CONTROL 
+outboard_slat 1.0 -0.1 0. 0. 0. 1.0 ! name , gain , Xhinge , XYZhvec , SgnDup
+
+CONTROL 
+outboard_flap 1.0 0.75 0. 0. 0. 1.0 ! name , gain , Xhinge , XYZhvec , SgnDup
 
 
 #____PANEL 3_______
@@ -61,13 +92,8 @@ AFIL 0.0 1.0
 Airfoils/NACA 64-210.dat
 
 
-#____PANEL 4_______
-#______________
-SECTION                                                     |  (keyword)
-   5.8010   57.2981    0.1078    3.0564   0.000   11    0   | Xle Yle Zle   Chord Ainc   [ Nspan Sspace ]
 
-AFIL 0.0 1.0
-Airfoils/NACA 64-210.dat
+
 
 
 #______________
@@ -102,6 +128,7 @@ ANGLE
    0.000                         | dAinc
 
 
+
 #____PANEL 1_______
 #______________
 SECTION                                                     |  (keyword)
@@ -110,6 +137,8 @@ SECTION                                                     |  (keyword)
 AFIL 0.0 1.0
 Airfoils/NACA 0012.dat
 
+CONTROL 
+elevator 1.0 0.75 0. 0. 0. 1.0 ! name , gain , Xhinge , XYZhvec , SgnDup
 
 #______________
 SECTION                                                     |  (keyword)
@@ -118,6 +147,8 @@ SECTION                                                     |  (keyword)
 AFIL 0.0 1.0
 Airfoils/NACA 0012.dat
 
+CONTROL 
+elevator 1.0 0.75 0. 0. 0. 1.0 ! name , gain , Xhinge , XYZhvec , SgnDup
 
 
 
@@ -137,7 +168,7 @@ TRANSLATE
 0.0  0.0  0.0
 
 ANGLE
-   0.000                         | dAinc
+   -2                         | dAinc
 
 
 #____PANEL 1_______

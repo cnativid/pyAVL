@@ -118,10 +118,9 @@ class AVL:
             stdout=open('AVLsession.log', 'w'),         # Put the output of this terminal into the open log file
             stderr=subprocess.PIPE)
         self.AVLsp.stdin.write(self.inputList.encode('utf-8'))
-        print(self.inputList)
         self.AVLsp.stdin.flush()
         self.AVLsp.communicate()
-
+    
         # log = open('AVLsession.log').read()
         # os.path.getsize('AVLsession.log')
         # print(len(log))
@@ -142,7 +141,6 @@ class AVL:
         # convert to units
         altitude = altitude/3.28084 # ft to m
         temp_offset = 5/9*(temp_offset-32) # F to C
-
         self.addInput('oper')
         self.addInput('M')
         self.addInput('G 32.17')
@@ -156,6 +154,14 @@ class AVL:
         self.addInput('G 32.17')  
         self.addInput('V {}'.format(velocity))
         self.addInput('\n')
+    def saveOutput(self,output,name=0):
+        self.addInput('MRF')
+        self.addInput(output)
+        if name == 0:
+            self.addInput('\n')
+        else:
+            self.addInput('{}.out'.format(name))
+        
 
 '''
 # def alpha(plane,alphas):
