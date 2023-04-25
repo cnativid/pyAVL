@@ -23,7 +23,7 @@ if __name__ == "__main__":
     AVLsp.addInput('D2 D2 45')
     # AVLsp.addInput('D3 D3 0')
     AVLsp.addInput('D4 D4 45')
-    AVLsp.addInput('D5 PM 0')
+    # AVLsp.addInput('D5 PM 0')
     AVLsp.addInput('X')
     AVLsp.saveOutput('FT','landing')
 

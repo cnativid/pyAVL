@@ -161,6 +161,7 @@ class AVL:
             self.addInput('\n')
         else:
             self.addInput('{}.out'.format(name))
+        self.addInput('O\n')
         
 
 '''
