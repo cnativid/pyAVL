@@ -162,6 +162,28 @@ class AVL:
         else:
             self.addInput('{}.out'.format(name))
         self.addInput('O\n')
+
+    def readFT(self):
+        self.addInput('MRF')
+        self.addInput('FT')
+        self.addInput('FT.out')
+        self.addInput('O\n')
+
+        FTout = open('FT.out').read()
+        start = FTout.rfind('vortices\n')
+        end = FTout.rfind(', e\n')+3
+        FTout=FTout[start:end].replace('Trefftz Plane:','').split('|')
+        print(FTout)
+        
+        #  = FTout[1::2]
+        # values =  FTout[::2]
+        # print(variables,values)
+        # caseData = dict(zip(FTout[::2],list(map(float,FTout[1::2]))))
+        # print(caseData)
+        # return FTout
+
+
+    
         
 
 '''
