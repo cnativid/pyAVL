@@ -164,22 +164,38 @@ class AVL:
         self.addInput('O\n')
 
     def readFT(self):
-        self.addInput('MRF')
-        self.addInput('FT')
-        self.addInput('FT.out')
-        self.addInput('O\n')
+        FT = open('FT.out')
+        FTout = FT.readlines()
+        out = {}
+        for i in [7,8,11,12,13,14,15,16,17,18,19,20]:
+            newLine = FTout[i].replace('\n','').replace(',',' ').replace('|',' ').replace('Trefftz Plane: ','').split()
+            h = int(len(newLine)/2) # get half length
+            for j in range(h):
+                out[newLine[j+h]] = float(newLine[j])
+        FT.close()
+        return out
+    
+    # def readFT(self):
+    #     self.addInput('MRF')
+    #     self.addInput('FT')
+    #     self.addInput('FT.out')
+    #     self.addInput('O\n')
 
-        FTout = open('FT.out').read()
-        start = FTout.rfind('vortices\n')
-        end = FTout.rfind(', e\n')+3
-        FTout=FTout[start:end].replace('Trefftz Plane:','').split('|')
-        print(FTout)
+    #     FTout = open('FT.out').read().replace('Trefftz Plane: ','').replace(',','').replace('E','e').split('\n')
+    #     FTout=FTout[7:9]+FTout[11:21]
+    #     print(FTout,'\n\n')
+    #     FTout = [i.split("|") for i in FTout]
+    #     print(FTout,'\n\n')
+    #     print(FTout[0][0])
+        # outputData = [dict(zip(i[:][1::2],i[:][::2])) for i in FTout]
+
+        # print(outputData)
         
         #  = FTout[1::2]
         # values =  FTout[::2]
-        # print(variables,values)
-        # caseData = dict(zip(FTout[::2],list(map(float,FTout[1::2]))))
-        # print(caseData)
+        # print(variables,values)   
+        # caseData = dict(zip(FTout[1::2],list(FTout[::2])))
+        # print(FTout[1::2],FTout[::2])
         # return FTout
 
 

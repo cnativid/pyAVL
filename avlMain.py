@@ -16,26 +16,28 @@ if __name__ == "__main__":
     AVLsp.addInput('X')
     AVLsp.saveOutput('FT','cruise')
 
-    # AVLsp.addInput('oper')
-    # AVLsp.addInput('C1\n')
-    # # AVLsp.addInput('D1 D1 0')
-    # AVLsp.addInput('A C 3.3')
-    # AVLsp.addInput('D2 D2 45')
-    # # AVLsp.addInput('D3 D3 0')
-    # AVLsp.addInput('D4 D4 45')
-    # # AVLsp.addInput('D5 PM 0')
-    # AVLsp.addInput('X')
-    # AVLsp.saveOutput('FT','landing')
+    AVLsp.addInput('oper')
+    AVLsp.addInput('C1\n')
+    # AVLsp.addInput('D1 D1 0')
+    AVLsp.addInput('A C 3.3')
+    AVLsp.addInput('D2 D2 45')
+    # AVLsp.addInput('D3 D3 0')
+    AVLsp.addInput('D4 D4 45')
+    # AVLsp.addInput('D5 PM 0')
+    AVLsp.addInput('X')
+    AVLsp.saveOutput('FT','landing')
     
-    AVLsp.readFT()
-    # print(output)
-    # AVLsp.addInput('X')
+
+    
+    AVLsp.addInput('X')
 
     AVLsp.runAVL()
-
+    out = AVLsp.readFT()
+    print(out['CLtot'],out['CDind'])
     # post
-    AVLsp.readFT()
 
+
+    
     # interfacing notes
     # flap deflection
     # angle of attack
