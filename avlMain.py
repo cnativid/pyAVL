@@ -8,7 +8,7 @@ if __name__ == "__main__":
     AVLsp.loadPlane(planeName)
     AVLsp.loadMass(planeName)
 
-    AVLsp.setAtmosphere(25e3,0)
+    AVLsp.setAtmosphere(25e3,500)
     AVLsp.setVelocity(275*1.6878099)
     AVLsp.addInput('oper')
     AVLsp.addInput('C1\n')
@@ -34,11 +34,3 @@ if __name__ == "__main__":
     AVLsp.runAVL()
     out = AVLsp.readFT()
     print(out['CLtot'],out['CDind'])
-    # post
-
-
-    
-    # interfacing notes
-    # flap deflection
-    # angle of attack
-    # 

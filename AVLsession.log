@@ -180,7 +180,7 @@
       E  elevation =  0.000      deg
       MN Mach no.  =  0.000       
       V  velocity  =  0.000      ft/s
-      D  air dens. = 0.1152E-02  slug/ft^3
+      D  air dens. = 0.4928E-03  slug/ft^3
       G  grav.acc. =  32.17      ft/s^2
       M  mass      =  1661.      slug
       IX Ixx       =  3855.      slug-ft^2
@@ -282,7 +282,7 @@
       E  elevation =  0.000      deg
       MN Mach no.  =  0.000       
       V  velocity  =  0.000      ft/s
-      D  air dens. = 0.1152E-02  slug/ft^3
+      D  air dens. = 0.4928E-03  slug/ft^3
       G  grav.acc. =  32.17      ft/s^2
       M  mass      =  1661.      slug
       IX Ixx       =  3855.      slug-ft^2
@@ -303,7 +303,7 @@
       E  elevation =  0.000      deg
       MN Mach no.  =  0.000       
       V  velocity  =  0.000      ft/s
-      D  air dens. = 0.1152E-02  slug/ft^3
+      D  air dens. = 0.4928E-03  slug/ft^3
       G  grav.acc. =  32.17      ft/s^2
       M  mass      =  1661.      slug
       IX Ixx       =  3855.      slug-ft^2
@@ -324,7 +324,7 @@
       E  elevation =  0.000      deg
       MN Mach no.  =  0.000       
       V  velocity  =  464.1      ft/s
-      D  air dens. = 0.1152E-02  slug/ft^3
+      D  air dens. = 0.4928E-03  slug/ft^3
       G  grav.acc. =  32.17      ft/s^2
       M  mass      =  1661.      slug
       IX Ixx       =  3855.      slug-ft^2
@@ -429,10 +429,10 @@
      (level or banked horizontal flight)
      =================================================
       B  bank angle =  0.000      deg
-      C  CL         = 0.5212       
+      C  CL         =  1.219       
       V  velocity   =  464.1      ft/s
       M  mass       =  1661.      slug
-      D  air dens.  = 0.1152E-02  slug/ft^3
+      D  air dens.  = 0.4928E-03  slug/ft^3
       G  grav.acc.  =  32.17      ft/s^2
          turn rad.  =  0.000      ft
          load fac.  =  1.000       
@@ -446,7 +446,7 @@
 
   variable          constraint              
   ------------      ------------------------
-  A lpha        ->  CL          =  0.5212         
+  A lpha        ->  CL          =   1.219         
   B eta         ->  beta        =   0.000         
   R oll  rate   ->  pb/2V       =   0.000         
   P itch rate   ->  qc/2V       =   0.000         
@@ -488,7 +488,7 @@
        R    pb/2V       =   0.000    
        P    qc/2V       =   0.000    
        Y    rb/2V       =   0.000    
-       C    CL          =  0.5212    
+       C    CL          =   1.219    
        S    CY          =   0.000    
        RM   Cl roll mom =   0.000    
        PM   Cm pitchmom =   0.000    
@@ -507,7 +507,7 @@
 
   variable          constraint              
   ------------      ------------------------
-  A lpha        ->  CL          =  0.5212         
+  A lpha        ->  CL          =   1.219         
   B eta         ->  beta        =   0.000         
   R oll  rate   ->  pb/2V       =   0.000         
   P itch rate   ->  qc/2V       =   0.000         
@@ -548,9 +548,11 @@
   Building bound-vortex velocity matrix...
 
  iter d(alpha)   d(beta)    d(pb/2V)   d(qc/2V)   d(rb/2V)   inboard_slainboard_flaoutboard_sloutboard_flelevator   
-   1  0.386E+00 -0.000E+00  0.000E+00 -0.255E-18 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00 -0.202E+01
-   2 -0.821E-04 -0.000E+00 -0.000E+00  0.255E-18 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00  0.216E-02
-   3  0.220E-06 -0.000E+00  0.000E+00 -0.188E-21 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00 -0.208E-05
+   1  0.776E+01 -0.000E+00  0.000E+00 -0.204E-17 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00 -0.137E+02
+   2  0.905E-01 -0.000E+00 -0.000E+00  0.203E-17 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00 -0.150E+00
+   3 -0.331E-04 -0.000E+00 -0.000E+00  0.144E-19 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00  0.184E-02
+   4  0.688E-06 -0.000E+00 -0.000E+00  0.812E-22  0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00 -0.236E-04
+   5 -0.881E-08 -0.000E+00 -0.000E+00  0.404E-24 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00  0.302E-06
  ---------------------------------------------------------------
  Vortex Lattice Output -- Total Forces
 
@@ -566,25 +568,25 @@
 
  Run case:  -unnamed-                              
 
-  Alpha =   0.38584     pb/2V =  -0.00000     p'b/2V =  -0.00000
-  Beta  =   0.00000     qc/2V =   0.00000
+  Alpha =   7.84599     pb/2V =  -0.00000     p'b/2V =  -0.00000
+  Beta  =   0.00000     qc/2V =  -0.00000
   Mach  =     0.000     rb/2V =  -0.00000     r'b/2V =  -0.00000
 
-  CXtot =  -0.00200     Cltot =  -0.00056     Cl'tot =  -0.00053
-  CYtot =  -0.01068     Cmtot =   0.00000
-  CZtot =  -0.52125     Cntot =   0.00353     Cn'tot =   0.00353
+  CXtot =   0.13768     Cltot =  -0.00041     Cl'tot =   0.00004
+  CYtot =  -0.00992     Cmtot =  -0.00000
+  CZtot =  -1.21115     Cntot =   0.00326     Cn'tot =   0.00328
 
-  CLtot =   0.52123
-  CDtot =   0.00551
-  CDvis =   0.00000     CDind = 0.0055097
-  CLff  =   0.52064     CDff  = 0.0054755    | Trefftz
-  CYff  =  -0.01043         e =    0.9716    | Plane  
+  CLtot =   1.21860
+  CDtot =   0.02894
+  CDvis =   0.00000     CDind = 0.0289423
+  CLff  =   1.21908     CDff  = 0.0286214    | Trefftz
+  CYff  =  -0.00994         e =    1.0187    | Plane  
 
    inboard_slat    =   0.00000
    inboard_flap    =   0.00000
    outboard_slat   =   0.00000
    outboard_flap   =   0.00000
-   elevator        =  -2.01376
+   elevator        = -13.80060
 
  ---------------------------------------------------------------
 
@@ -593,7 +595,7 @@
 
   variable          constraint              
   ------------      ------------------------
-  A lpha        ->  CL          =  0.5212         
+  A lpha        ->  CL          =   1.219         
   B eta         ->  beta        =   0.000         
   R oll  rate   ->  pb/2V       =   0.000         
   P itch rate   ->  qc/2V       =   0.000         
@@ -634,7 +636,7 @@
 
   variable          constraint              
   ------------      ------------------------
-  A lpha        ->  CL          =  0.5212         
+  A lpha        ->  CL          =   1.219         
   B eta         ->  beta        =   0.000         
   R oll  rate   ->  pb/2V       =   0.000         
   P itch rate   ->  qc/2V       =   0.000         
@@ -678,7 +680,7 @@ mrftot: fileid = TOT
 
   variable          constraint              
   ------------      ------------------------
-  A lpha        ->  CL          =  0.5212         
+  A lpha        ->  CL          =   1.219         
   B eta         ->  beta        =   0.000         
   R oll  rate   ->  pb/2V       =   0.000         
   P itch rate   ->  qc/2V       =   0.000         
@@ -719,7 +721,7 @@ mrftot: fileid = TOT
 
   variable          constraint              
   ------------      ------------------------
-  A lpha        ->  CL          =  0.5212         
+  A lpha        ->  CL          =   1.219         
   B eta         ->  beta        =   0.000         
   R oll  rate   ->  pb/2V       =   0.000         
   P itch rate   ->  qc/2V       =   0.000         
@@ -761,10 +763,10 @@ mrftot: fileid = TOT
      (level or banked horizontal flight)
      =================================================
       B  bank angle =  0.000      deg
-      C  CL         = 0.5212       
+      C  CL         =  1.219       
       V  velocity   =  464.1      ft/s
       M  mass       =  1661.      slug
-      D  air dens.  = 0.1152E-02  slug/ft^3
+      D  air dens.  = 0.4928E-03  slug/ft^3
       G  grav.acc.  =  32.17      ft/s^2
          turn rad.  =  0.000      ft
          load fac.  =  1.000       
@@ -778,7 +780,7 @@ mrftot: fileid = TOT
 
   variable          constraint              
   ------------      ------------------------
-  A lpha        ->  CL          =  0.5212         
+  A lpha        ->  CL          =   1.219         
   B eta         ->  beta        =   0.000         
   R oll  rate   ->  pb/2V       =   0.000         
   P itch rate   ->  qc/2V       =   0.000         
@@ -934,11 +936,11 @@ mrftot: fileid = TOT
 
  .OPER (case 1/1)   c>  
  iter d(alpha)   d(beta)    d(pb/2V)   d(qc/2V)   d(rb/2V)   inboard_slainboard_flaoutboard_sloutboard_flelevator   
-   1  0.118E+02 -0.000E+00 -0.000E+00 -0.202E-17 -0.000E+00 -0.000E+00  0.450E+02 -0.000E+00  0.450E+02 -0.248E+02
-   2  0.183E+01 -0.000E+00 -0.000E+00  0.191E-17 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00 -0.242E+01
-   3  0.286E-01 -0.000E+00 -0.000E+00  0.114E-18 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00 -0.185E-01
-   4  0.180E-05 -0.000E+00 -0.000E+00 -0.105E-20 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00  0.381E-03
-   5  0.116E-06 -0.000E+00 -0.000E+00  0.383E-22  0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00 -0.816E-05
+   1  0.521E+01 -0.000E+00 -0.000E+00  0.194E-17 -0.000E+00 -0.000E+00  0.450E+02 -0.000E+00  0.450E+02 -0.142E+02
+   2  0.986E+00 -0.000E+00  0.000E+00 -0.191E-17 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00 -0.121E+01
+   3  0.823E-02 -0.000E+00 -0.000E+00 -0.243E-19 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00  0.586E-02
+   4  0.240E-05 -0.000E+00 -0.000E+00 -0.584E-22  0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00 -0.126E-03
+   5 -0.382E-07 -0.000E+00 -0.000E+00 -0.228E-23 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00  0.269E-05
  ---------------------------------------------------------------
  Vortex Lattice Output -- Total Forces
 
@@ -959,7 +961,7 @@ mrftot: fileid = TOT
   Mach  =     0.000     rb/2V =  -0.00000     r'b/2V =  -0.00000
 
   CXtot =   0.54451     Cltot =  -0.00036     Cl'tot =   0.00053
-  CYtot =  -0.01112     Cmtot =   0.00000
+  CYtot =  -0.01112     Cmtot =  -0.00000
   CZtot =  -3.26549     Cntot =   0.00362     Cn'tot =   0.00360
 
   CLtot =   3.30000
@@ -1101,15 +1103,6 @@ mrftot: fileid = TOT
   MRF  machine-readable format CPOM OML surface pressures
 
  .OPER (case 1/1)   c>  
- AVL   c>   MRF  command not recognized.  Type a "?" for list
-
- AVL   c>   FT   command not recognized.  Type a "?" for list
-
- AVL   c>   FT   command not recognized.  Type a "?" for list
-
- AVL   c>   O    command not recognized.  Type a "?" for list
-
- AVL   c>  
  AVL   c>   X    command not recognized.  Type a "?" for list
 
  AVL   c>  

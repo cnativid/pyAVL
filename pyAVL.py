@@ -101,18 +101,31 @@ import time
 #         # file.writelines(ComponentHeader('MASS DEFINTION'))
 #         # file.write(SectionHeader('MASS DEFINTION'))
 '''
+
+def IsItWindows():
+    """Return true if os is windows"""
+    return True if os.name == 'nt' else False
+
 class AVL:
     def __init__(self):
         self.inputList = '' 
         self.cd = os.getcwd()
         # print(self)
+
+        self.win = IsItWindows()
+        if self.win:
+            self.avlpath = '{}/avl.exe'.format(self.cd)
+        else:
+            self.avlpath = '{}/avl3.35'.format(self.cd)
+
+
     def addInput(self,input):
         self.inputList += '{}\n'.format(input)
         # print(self.inputList)
     def clearInput(self):
         self.inputlist = ''
     def runAVL(self): # opens avl and runs all of the stored commands
-        self.AVLsp = subprocess.Popen('avl.exe',
+        self.AVLsp = subprocess.Popen(self.avlpath,
             shell=False,
             stdin=subprocess.PIPE,
             stdout=open('AVLsession.log', 'w'),         # Put the output of this terminal into the open log file
@@ -121,6 +134,7 @@ class AVL:
         self.AVLsp.stdin.flush()
         self.AVLsp.communicate()
     
+        # print(self.inputList)
         # log = open('AVLsession.log').read()
         # os.path.getsize('AVLsession.log')
         # print(len(log))
@@ -132,39 +146,48 @@ class AVL:
     def oper(self):
         self.addInput('\n \n \n')
         self.addInput('oper')
+
     def loadPlane(self,plane):
-        self.addInput('load Planes\\{}\\{}.avl'.format(plane,plane))
+        self.addInput('load Planes/{}/{}.avl'.format(plane,plane))
+
+
     def loadMass(self,plane):
-        self.addInput('mass Planes\\{}\\{}.mass'.format(plane,plane))
+        self.addInput('mass Planes/{}/{}.mass'.format(plane,plane))
         self.addInput('mset\n0')
+
     def setAtmosphere(self,altitude=0,temp_offset=0):
-        # convert to units
+        # convert to imperial units
         altitude = altitude/3.28084 # ft to m
-        temp_offset = 5/9*(temp_offset-32) # F to C
+        temp_offset = 5/9*temp_offset # F to C
         self.addInput('oper')
         self.addInput('M')
         self.addInput('G 32.17')
         atmo = Atmosphere(altitude)
-        print((atmo.temperature/(atmo.temperature+temp_offset)))
+        # print((atmo.temperature/(atmo.temperature+temp_offset)))
         self.addInput('D {}'.format((atmo.temperature[0]/(atmo.temperature[0]+temp_offset))*atmo.density[0]/515.378819))
         self.addInput('\n')
+
     def setVelocity(self,velocity):
         self.addInput('oper')
         self.addInput('M')
         self.addInput('G 32.17')  
         self.addInput('V {}'.format(velocity))
         self.addInput('\n')
+        
     def saveOutput(self,output,name=0):
         self.addInput('MRF')
         self.addInput(output)
         if name == 0:
-            self.addInput('\n')
+            self.addInput('FT.out')
         else:
             self.addInput('{}.out'.format(name))
         self.addInput('O\n')
 
-    def readFT(self):
-        FT = open('FT.out')
+    def readFT(self,name=0):
+        if name == 0:
+            FT = open('FT.out')
+        else:
+            FT = open(name)
         FTout = FT.readlines()
         out = {}
         for i in [7,8,11,12,13,14,15,16,17,18,19,20]:
@@ -174,93 +197,6 @@ class AVL:
                 out[newLine[j+h]] = float(newLine[j])
         FT.close()
         return out
-    
-    # def readFT(self):
-    #     self.addInput('MRF')
-    #     self.addInput('FT')
-    #     self.addInput('FT.out')
-    #     self.addInput('O\n')
-
-    #     FTout = open('FT.out').read().replace('Trefftz Plane: ','').replace(',','').replace('E','e').split('\n')
-    #     FTout=FTout[7:9]+FTout[11:21]
-    #     print(FTout,'\n\n')
-    #     FTout = [i.split("|") for i in FTout]
-    #     print(FTout,'\n\n')
-    #     print(FTout[0][0])
-        # outputData = [dict(zip(i[:][1::2],i[:][::2])) for i in FTout]
-
-        # print(outputData)
-        
-        #  = FTout[1::2]
-        # values =  FTout[::2]
-        # print(variables,values)   
-        # caseData = dict(zip(FTout[1::2],list(FTout[::2])))
-        # print(FTout[1::2],FTout[::2])
-        # return FTout
 
 
     
-        
-
-'''
-# def alpha(plane,alphas):
-#     AVLsp = AVL()
-#     AVLsp.addInput('load Planes\\{}\\{}'.format(plane,plane))
-#     AVLsp.addInput('oper')
-#     for alpha in alphas:
-#         AVLsp.addInput('A')
-#         AVLsp.addInput('A')
-#         AVLsp.addInput('{}'.format(alpha))
-#         AVLsp.addInput('X')
-#         output = AVLsp.runAVL()
-#         # CLCD = output['CLtot']/output['CDtot']
-#         # e = output['e']
-#         # print(CLCD)
-#         return output
-#         AVLsp.clearInput()
-#     # AVLsp.readAVL(['e','Alpha','CLtot'])
-# def CL(plane,CLs):
-#     AVLsp = AVL()
-#     AVLsp.addInput('load Planes\\{}\\{}'.format(plane,plane))
-#     AVLsp.addInput('oper')
-#     for CL in CLs:
-#         AVLsp.addInput('A')
-#         AVLsp.addInput('C')
-#         AVLsp.addInput('{}'.format(CL))
-#         AVLsp.addInput('X')
-#         output = AVLsp.runAVL()
-#         # CLCD = output['CLtot']/output['CDtot']
-#         # e = output['e']
-#         # print(CLCD)
-#         return output
-#         AVLsp.clearInput()
-# if __name__ == "__main__":
-#     name = 'TestPlane'
-# mach = 0
-# # sections = [[Xle,Yle,Zle],chord,angle,Nspan,Sspace,airfoil]
-# mainWing = Surface('MainWing',1,1,[0,0,0],0,10,1,
-#     [
-#     [[0,0,0],1,0,10,1,'S4022.dat'],
-#     [[.25,5,0],.5,0,10,1,'S4022.dat'],
-# ])
-# hStab = Surface('hStab',1,2,[5,0,.5],0,5,1,
-#                 [
-#     [[0,0,0],.5,0,10,1,'S4022.dat'],
-#     [[.125,2,0],.25,0,10,1,'S4022.dat'],
-#                 ])
-# TestPlane = Plane([mainWing,hStab])
-# # TestPlane = Plane(surfs,bodies)
-# CreateAVLPlane(name,mach,TestPlane)
-# AVLsp = AVL()
-# AVLsp.addInput('load Planes/{}/{}.avl'.format(name,name))
-# AVLsp.addInput('oper')
-# AVLsp.addInput('A')
-# AVLsp.addInput('C')
-# AVLsp.addInput('.6')
-# AVLsp.addInput('C1')
-# AVLsp.addInput('X')
-# AVLsp.addInput('1')
-# AVLsp.addInput('')
-# AVLsp.addInput('X')
-# AVLsp.runAVL()
-'''
