@@ -4,6 +4,9 @@ import sys
 import re
 import subprocess
 import time
+import numpy as np
+import re
+
 '''
 # class Plane:
 #     def __init__(self,surfaces):
@@ -133,16 +136,7 @@ class AVL:
         self.AVLsp.stdin.write(self.inputList.encode('utf-8'))
         self.AVLsp.stdin.flush()
         self.AVLsp.communicate()
-    
-        # print(self.inputList)
-        # log = open('AVLsession.log').read()
-        # os.path.getsize('AVLsession.log')
-        # print(len(log))
-        # start = log.rfind('  Alpha =')
-        # end = log.rfind('| Plane')
-        # caseOutput = log[start:end].replace('| Trefftz','').replace('=',' ').replace('**********','-1').split()
-        # caseData = dict(zip(caseOutput[::2],list(map(float,caseOutput[1::2]))))
-        # return caseData 
+
     def oper(self):
         self.addInput('\n \n \n')
         self.addInput('oper')
@@ -163,7 +157,6 @@ class AVL:
         self.addInput('M')
         self.addInput('G 32.17')
         atmo = Atmosphere(altitude)
-        # print((atmo.temperature/(atmo.temperature+temp_offset)))
         self.addInput('D {}'.format((atmo.temperature[0]/(atmo.temperature[0]+temp_offset))*atmo.density[0]/515.378819))
         self.addInput('\n')
 
@@ -178,25 +171,76 @@ class AVL:
         self.addInput('MRF')
         self.addInput(output)
         if name == 0:
-            self.addInput('FT.out')
+            self.addInput('output.{}'.format(output))
         else:
-            self.addInput('{}.out'.format(name))
+            self.addInput('{}.{}'.format(name,output))
         self.addInput('O\n')
 
-    def readFT(self,name=0):
+    def readOutput(self,output,name=0):
+        # load output file
         if name == 0:
-            FT = open('FT.out')
+            fname = ('output.{}'.format(output))
         else:
-            FT = open(name)
-        FTout = FT.readlines()
-        out = {}
-        for i in [7,8,11,12,13,14,15,16,17,18,19,20]:
-            newLine = FTout[i].replace('\n','').replace(',',' ').replace('|',' ').replace('Trefftz Plane: ','').split()
-            h = int(len(newLine)/2) # get half length
-            for j in range(h):
-                out[newLine[j+h]] = float(newLine[j])
-        FT.close()
-        return out
+            fname = ('{}.{}'.format(name,output))
+        
+        out = np.array(open(fname).readlines()) # read the output file
+        out = out[np.array(['|' in line for line in out])]
 
 
+        var_dict = {}
+        for line in out:
+            line = line.replace('\n','').replace(':',',').split('|')
+            line[0] = line[0].split()
+            line[1] = [var.strip() for var in line[1].split(',')]
+            for j in range(1,len(line[0])+1):
+                var_dict[line[1][-j]] = float(line[0][-j])
+        return var_dict
     
+    def loadOptimize(self,plane): # loads an optimization template
+
+        optTemplate = open('Planes/{}/{}.avlopt_template'.format(plane,plane)).read() # read the optimization file
+        optVars = re.findall(r'\{.*?\}',optTemplate) # find all the declared variables
+        for optVar in optVars: # replace all variables w/ format brackets
+            optTemplate = optTemplate.replace(optVar,'{}')
+        
+        optVars = [var.replace('{','').replace('}','').split(',') for var in optVars] # remove brackets in var list
+        # print(optTemplate) 
+
+        var_dict = {} # create dictionary
+        var_count = 0
+        for optVar in optVars: # name variables in dictionary
+            if len(optVar) > 1:
+                var_dict[optVar[1]] = optVar[0]
+            else: # if name not declared, give general name
+                var_count += 1
+                var_dict['var_{}'.format(var_count)] = optVar[0]
+        # print(list(var_dict.values()))
+
+        self.optTemplate = optTemplate
+        self.var_dict = var_dict
+        # return optTemplate,var_dict
+
+    def writeOptimize(self,plane):
+        with open('Planes/{}/{}.avlopt_iter'.format(plane,plane),'w') as file:
+            file.write(self.optTemplate.format(*self.var_dict.values()))
+            
+        
+
+
+
+    # def readFT(self,name=0):
+    #     if name == 0:
+    #         FT = open('FT.out')
+    #     else:
+    #         FT = open(name)
+    #     FTout = FT.readlines()
+    #     out = {}
+    #     for i in [7,8,11,12,13,14,15,16,17,18,19,20]:
+    #         newLine = FTout[i].replace('\n','').replace(',',' ').replace('|',' ').replace('Trefftz Plane: ','').split()
+    #         h = int(len(newLine)/2) # get half length
+    #         for j in range(h):
+    #             out[newLine[j+h]] = float(newLine[j])
+    #     FT.close()
+    #     return out
+
+
