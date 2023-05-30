@@ -7,103 +7,6 @@ import time
 import numpy as np
 import re
 
-'''
-# class Plane:
-#     def __init__(self,surfaces):
-#         self.surfaces = surfaces
-#         # print(range(0,len(self.surfaces[0].sections[:-1])-2))
-#         # print(len(self.surfaces[0].sections))
-#         self.Sref = 0
-#         for i in range(0,len(self.surfaces[0].sections)-1):
-
-#             # self.Sref += self.surfaces.sections
-#             self.Sref +=((self.surfaces[0].sections[i+1][1]+self.surfaces[0].sections[i][1])*(self.surfaces[0].sections[i+1][0][1]-self.surfaces[0].sections[i][0][1]))
-#         self.Bref = 2*self.surfaces[0].sections[-1][0][1]
-#         self.Cref = self.Sref/self.Bref
-#         # for i = len(self.surfaces[0].sections[:-1])
-#         # self.Sref = self.surfaces[0].sections[:-1]
-
-            
-            
-            
-#         # self.bodies = bodies
-
-# class Surface:
-#     def __init__(self, name, symmetry, component, translate, incidence, Nchord, Cspace, sections):
-#         """
-#         name: string
-#             Name of the Surface
-#         symmetry: boolean
-#             0 = no symmetry
-#             1 = symmetry over X-Z plane
-#         component: integer
-#             Component #
-#         translate: vector
-#             Location of LE at root chord
-#         incidence: float
-#             Incidence Angle
-#         Nchord: integer
-#             Number of chordwise points
-#         Cspace: integer
-#             Chordwise point distribution
-#         sections: array
-#             Section Array
-#         """
-#         self.name = name
-#         self.symmetry = symmetry
-#         self.component = component
-#         self.translate = translate
-#         self.incidence = incidence
-#         self.Nchord = Nchord
-#         self.Cspace = Cspace
-#         self.sections = sections
-        
-# def WriteSection(section):
-#     # section = [[Xle,Yle,Zle],chord,angle,Nspan,Sspace,airfoil]
-#     sect = "SECTION\n{} {} {} {} {} {} {} \nAFIL\nAirfoils\\{}\n".format(section[0][0],section[0][1],section[0][2],section[1],section[2],section[3],section[4],section[5])
-#     return sect
-
-# def WriteSurface(surface):
-#     surf = "SURFACE\n{}\n{} {}\nCOMPONENT\n{}\n".format(surface.name,surface.Nchord, surface.Cspace,surface.component)
-#     if surface.symmetry == 1:
-#         surf = surf+"YDUPLICATE\n0.0\n"
-#     surf = surf + "TRANSLATE\n{} {} {}\nANGLE\n{}\n".format(surface.translate[0],surface.translate[1],surface.translate[2],surface.incidence)
-#     for section in surface.sections:
-#         surf = surf + WriteSection(section)
-#     # print(surf)
-#     return surf
-    
-# def ComponentHeader(text):
-#     text = text.replace("", " ")[1: -1]
-#     length = len(text)
-#     header = ["\n"+"#" * (length+8)+"\n","#   {}   #\n".format(text),"#" * (length+8)+"\n"]
-#     return header
-
-# def SectionHeader(text):
-#     header = "###  {}  ###\n".format(text.replace("", " ")[1: -1])
-#     return header
-
-# def CreateAVLPlane(name,mach,plane):
-#     # print('AAA')
-#     cd = os.getcwd() # Get current location of python script
-#     if not os.path.exists('{}\\Planes'.format(cd)): # create folders if nonexistent
-#         os.mkdir('{}\\Planes'.format(cd))
-#         print("/Planes folder created")
-#     if not os.path.exists('{}\\Planes\\{}'.format(cd,name)):
-#         os.mkdir('{}\\Planes\\{}'.format(cd,name))
-#         print("Planes/{} folder created".format(name))
-
-    
-#     # Cref = 10/
-    
-#     with open('{}\\Planes\\{}\\{}.avl'.format(cd,name,name),'w') as file:
-#         file.write('{}\n{}\n0 0 0\n{} {} {}\n0 0 0\n0\n'.format(name,mach,plane.Sref,plane.Cref,plane.Bref))
-#         for surface in plane.surfaces:
-#             file.write(WriteSurface(surface))
-
-#         # file.writelines(ComponentHeader('MASS DEFINTION'))
-#         # file.write(SectionHeader('MASS DEFINTION'))
-'''
 
 def IsItWindows():
     """Return true if os is windows"""
@@ -144,6 +47,8 @@ class AVL:
     def loadPlane(self,plane):
         self.addInput('load Planes/{}/{}.avl'.format(plane,plane))
 
+    def load_opt_plane(self,plane):
+        self.addInput('load Planes/{}/{}.avlopt_iter'.format(plane,plane))
 
     def loadMass(self,plane):
         self.addInput('mass Planes/{}/{}.mass'.format(plane,plane))
@@ -196,8 +101,7 @@ class AVL:
                 var_dict[line[1][-j]] = float(line[0][-j])
         return var_dict
     
-    def loadOptimize(self,plane): # loads an optimization template
-
+    def opt_template(self,plane): # loads an optimization template
         optTemplate = open('Planes/{}/{}.avlopt_template'.format(plane,plane)).read() # read the optimization file
         optVars = re.findall(r'\{.*?\}',optTemplate) # find all the declared variables
         for optVar in optVars: # replace all variables w/ format brackets
@@ -206,41 +110,62 @@ class AVL:
         optVars = [var.replace('{','').replace('}','').split(',') for var in optVars] # remove brackets in var list
         # print(optTemplate) 
 
-        var_dict = {} # create dictionary
-        var_count = 0
+        optvarval = [] 
+        # var_count = 0
         for optVar in optVars: # name variables in dictionary
-            if len(optVar) > 1:
-                var_dict[optVar[1]] = optVar[0]
-            else: # if name not declared, give general name
-                var_count += 1
-                var_dict['var_{}'.format(var_count)] = optVar[0]
+            optvarval.append(float(optVar[0]))
+
+        # # var_dict = {} # create dictionary
+        # # var_count = 0
+        # for optVar in optVars: # name variables in dictionary
+        #     if len(optVar) > 1:
+        #         var_dict[optVar[1]] = optVar[0]
+        #     else: # if name not declared, give general name
+        #         var_count += 1
+        #         var_dict['var_{}'.format(var_count)] = optVar[0]
         # print(list(var_dict.values()))
 
-        self.optTemplate = optTemplate
-        self.var_dict = var_dict
+        self.optTemplate = optTemplate # stores template
+        # self.var_dict = var_dict # stores vars within itself
+        self.optvarval = optvarval
         # return optTemplate,var_dict
 
-    def writeOptimize(self,plane):
+    def writeOptimize(self,plane): # writes new values into iteration
+
+        # this needs fixing bruhhh
         with open('Planes/{}/{}.avlopt_iter'.format(plane,plane),'w') as file:
-            file.write(self.optTemplate.format(*self.var_dict.values()))
+            file.write(self.optTemplate.format(*self.optvarval))
+        # self.updateRefs(plane)
+        # with open('Planes/{}/{}.avlopt_iter'.format(plane,plane),'w') as file:
+        #     file.write(self.optTemplate.format(*self.var_dict.values()))   
+
+    def updateRefs(self,plane): # calculates new reference values
+        with open('Planes/{}/{}.avlopt_iter'.format(plane,plane),'r') as file:
+            fstring = np.array(file.readlines()) # reads line by line
+            # print(fstring)
+            surfref = []    
+            for index, line in enumerate(fstring):
+                if 'SURFACE' in line:
+                    surfref.append(index)
+                    if len(surfref) > 1:
+                        break
+            sectionindex = []
+            for index, line in enumerate(fstring[:surfref[1]]):
+                if 'SECTION' in line:
+                    sectionindex.append(index)
+
+            planform_data = []
+            for i in range(len(sectionindex)):
+                planform_data.append([float(line) for line in np.array(fstring[sectionindex[i]+1].split())[[1,3]]]) # disgusting python one liner
+            planform_data = np.array(planform_data)
+            # print(planform_data)
             
-        
-
-
-
-    # def readFT(self,name=0):
-    #     if name == 0:
-    #         FT = open('FT.out')
-    #     else:
-    #         FT = open(name)
-    #     FTout = FT.readlines()
-    #     out = {}
-    #     for i in [7,8,11,12,13,14,15,16,17,18,19,20]:
-    #         newLine = FTout[i].replace('\n','').replace(',',' ').replace('|',' ').replace('Trefftz Plane: ','').split()
-    #         h = int(len(newLine)/2) # get half length
-    #         for j in range(h):
-    #             out[newLine[j+h]] = float(newLine[j])
-    #     FT.close()
-    #     return out
-
-
+            section_lengths = planform_data[1:,0]-planform_data[:-1,0]
+            b_ref = 2*sum(section_lengths)
+            # print(span,section_lengths)
+            S_ref = sum(section_lengths*(planform_data[:-1,1]+planform_data[1:,1]))
+            c_ref = 2/S_ref*sum( section_lengths*(planform_data[:-1,1]*planform_data[1:,1]+1/3*(planform_data[1:,1]-planform_data[:-1,1])**2) )
+            # print(S_ref,c_ref,b_ref)
+            self.optvarval[0] = S_ref
+            self.optvarval[1] = c_ref
+            self.optvarval[2] = b_ref
