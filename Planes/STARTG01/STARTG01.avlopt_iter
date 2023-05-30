@@ -6,13 +6,12 @@
 STARTG01
 0.0                                 | Mach
 0     0     0.0                     | iYsym  iZsym  Zsym
-826.13454    7.59487   115.77869  | Sref   Cref   Bref
+2312.0360393383553    19.922491257102877   116.6872 | Sref   Cref   Bref
   0.00000     0.00000     0.00000   | Xref   Yref   Zref
  0.00                               | CDp  (optional)
 
 
 
-#========TODO: REMOVE OR MODIFY MANUALLY DUPLICATE SECTIONS IN SURFACE DEFINITION=========
 SURFACE                      | (keyword)
 Main Wing
 #Nchord    Cspace   [ Nspan Sspace ]
@@ -37,7 +36,7 @@ ANGLE
 #____PANEL 1_______
 #______________
 SECTION                                                     |  (keyword)
-   0.0000    0.0000    0.0000   10.1880   0.000   6    3   | Xle Yle Zle   Chord Ainc   [ Nspan Sspace ]
+   0.0000    0.0000    0.0000   20.0   0.000   6    3   | Xle Yle Zle   Chord Ainc   [ Nspan Sspace ]
 
 AFIL 0.0 1.0
 Airfoils/NACA 64-210.dat
@@ -51,7 +50,7 @@ inboard_flap 1.0 0.75 0. 0. 0. 1.0 ! name , gain , Xhinge , XYZhvec , SgnDup
 #____PANEL 2_______
 #______________
 SECTION                                                     |  (keyword)
-   0.9980   11.4220    0.0000    9.3026   0.000   11    3   | Xle Yle Zle   Chord Ainc   [ Nspan Sspace ]
+   0.9980   11.4220    0.0000    20.0   0.000   11    3   | Xle Yle Zle   Chord Ainc   [ Nspan Sspace ]
 
 AFIL 0.0 1.0
 Airfoils/NACA 64-210.dat
@@ -71,7 +70,7 @@ outboard_flap 1.0 0.75 0. 0. 0. 1.0 ! name , gain , Xhinge , XYZhvec , SgnDup
 
 
 SECTION                                                     |  (keyword)
-   2.997   34.267    0.0000    6.512   0.000    13    -2   | Xle Yle Zle   Chord Ainc   [ Nspan Sspace ]
+   2.997   34.267    0.0000    20.0   0.000    13    -2   | Xle Yle Zle   Chord Ainc   [ Nspan Sspace ]
 
 AFIL 0.0 1.0
 Airfoils/NACA 64-210.dat
@@ -86,7 +85,7 @@ outboard_flap 1.0 0.75 0. 0. 0. 1.0 ! name , gain , Xhinge , XYZhvec , SgnDup
 #____PANEL 3_______
 #______________
 SECTION                                                     |  (keyword)
-   4.9960   57.1114    0.0000    3.7210   0.000    9    1   | Xle Yle Zle   Chord Ainc   [ Nspan Sspace ]
+   4.9960   57.1114    0.0000    20.0   0.000    9    1   | Xle Yle Zle   Chord Ainc   [ Nspan Sspace ]
 
 AFIL 0.0 1.0
 Airfoils/NACA 64-210.dat
@@ -94,7 +93,7 @@ Airfoils/NACA 64-210.dat
 
 #______________
 SECTION                                                     |  (keyword)
-   7.7210   58.3436    2.9802    0.9989   0.000   7    0   | Xle Yle Zle   Chord Ainc   [ Nspan Sspace ]
+   7.7210   58.3436    2.9802    2.382762001586914   0.000   7    0   | Xle Yle Zle   Chord Ainc   [ Nspan Sspace ]
 
 AFIL 0.0 1.0
 Airfoils/NACA 64-210.dat
@@ -102,7 +101,6 @@ Airfoils/NACA 64-210.dat
 
 
 
-#========TODO: REMOVE OR MODIFY MANUALLY DUPLICATE SECTIONS IN SURFACE DEFINITION=========
 SURFACE                      | (keyword)
 Elevator
 #Nchord    Cspace   [ Nspan Sspace ]
@@ -148,7 +146,7 @@ elevator 1.0 0.75 0. 0. 0. 1.0 ! name , gain , Xhinge , XYZhvec , SgnDup
 
 
 
-#========TODO: REMOVE OR MODIFY MANUALLY DUPLICATE SECTIONS IN SURFACE DEFINITION=========
+
 SURFACE                      | (keyword)
 Fin
 #Nchord    Cspace   [ Nspan Sspace ]
