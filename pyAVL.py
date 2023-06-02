@@ -25,6 +25,8 @@ class AVL:
             self.avlpath = '{}/avl3.35'.format(self.cd)
 
 
+
+
     def addInput(self,input):
         self.inputList += '{}\n'.format(input)
         # print(self.inputList)
@@ -39,6 +41,7 @@ class AVL:
         self.AVLsp.stdin.write(self.inputList.encode('utf-8'))
         self.AVLsp.stdin.flush()
         self.AVLsp.communicate()
+        self.inputlist = ''
 
     def oper(self):
         self.addInput('\n \n \n')
@@ -101,43 +104,58 @@ class AVL:
                 var_dict[line[1][-j]] = float(line[0][-j])
         return var_dict
     
-    def opt_template(self,plane): # loads an optimization template
-        optTemplate = open('Planes/{}/{}.avlopt_template'.format(plane,plane)).read() # read the optimization file
-        optVars = re.findall(r'\{.*?\}',optTemplate) # find all the declared variables
-        for optVar in optVars: # replace all variables w/ format brackets
-            optTemplate = optTemplate.replace(optVar,'{}')
-        
-        optVars = [var.replace('{','').replace('}','').split(',') for var in optVars] # remove brackets in var list
-        # print(optTemplate) 
+    def load_opt_template(self,plane): # loads an optimization template
+        opt_template = open('Planes/{}/{}.avlopt_template'.format(plane,plane)).read() # read the optimization file
+        optVars = re.findall(r'\{.*?\}',opt_template) # find all the declared variables
 
-        optvarval = [] 
-        # var_count = 0
-        for optVar in optVars: # name variables in dictionary
-            optvarval.append(float(optVar[0]))
+        # optVars = [var.replace('{','').replace('}','').split(',') for var in optVars] # remove brackets in var list
+  
+        var_dict = {} # create dictionary
+        var_index = {}
+        var_count = 0
+        for index, optVar in enumerate(optVars): # name variables in dictionary
+            opt_template = opt_template.replace(optVar,'{{{}}}')
+            optVar = optVar.replace('{','').replace('}','').split(',')
+            # print(optVar)
+            if len(optVar) > 1:
+                var_name = optVar[1]
+                if var_name in var_dict.keys():
+                    var_dict[var_name].append(float(optVar[0]))
+                    var_index[var_name].append(int(index))
+                else:
+                    # print(optVar[0])
+                    var_dict[var_name] = [float(optVar[0])]
+                    var_index[var_name] = [int(index)]
+            else: # if name not declared, give general name
+                var_count += 1
+                var_name = 'var_{}'.format(var_count)
+                var_dict[var_name] = [optVar[0]]
+                var_index[var_name] = [int(index)]
+            # print('{'+str(index)+'}')
 
-        # # var_dict = {} # create dictionary
-        # # var_count = 0
-        # for optVar in optVars: # name variables in dictionary
-        #     if len(optVar) > 1:
-        #         var_dict[optVar[1]] = optVar[0]
-        #     else: # if name not declared, give general name
-        #         var_count += 1
-        #         var_dict['var_{}'.format(var_count)] = optVar[0]
-        # print(list(var_dict.values()))
+        # rearranges formatting for vector binning
 
-        self.optTemplate = optTemplate # stores template
-        # self.var_dict = var_dict # stores vars within itself
-        self.optvarval = optvarval
-        # return optTemplate,var_dict
+        var_index_flat = [i for var in list(var_index.values()) for i in var]
+        # print(var_index_flat)
+        opt_template = opt_template.format(*list(np.argsort(var_index_flat))) # do not ask
+        # print(np.argsort(var_index_flat))
+        # print(opt_template)
+        # print(*[item for index in list(var_dict.values()) for item in index])
+        self.opt_template = opt_template # stores template
+        self.var_dict = var_dict # stores vars within itself
+
+        # print(opt_template)
+        # print(np.argsort(var_index_flat))
+        # print(var_dict.values())
 
     def writeOptimize(self,plane): # writes new values into iteration
 
         # this needs fixing bruhhh
         with open('Planes/{}/{}.avlopt_iter'.format(plane,plane),'w') as file:
-            file.write(self.optTemplate.format(*self.optvarval))
+            file.write(self.opt_template.format(*[i for var in list(self.var_dict.values()) for i in var]))
         # self.updateRefs(plane)
         # with open('Planes/{}/{}.avlopt_iter'.format(plane,plane),'w') as file:
-        #     file.write(self.optTemplate.format(*self.var_dict.values()))   
+        #     file.write(self.opt_template.format(*self.var_dict.values()))   
 
     def updateRefs(self,plane): # calculates new reference values
         with open('Planes/{}/{}.avlopt_iter'.format(plane,plane),'r') as file:
@@ -161,11 +179,10 @@ class AVL:
             # print(planform_data)
             
             section_lengths = planform_data[1:,0]-planform_data[:-1,0]
-            b_ref = 2*sum(section_lengths)
-            # print(span,section_lengths)
+            self.var_dict['Bref'] = [2*sum(section_lengths)]
             S_ref = sum(section_lengths*(planform_data[:-1,1]+planform_data[1:,1]))
-            c_ref = 2/S_ref*sum( section_lengths*(planform_data[:-1,1]*planform_data[1:,1]+1/3*(planform_data[1:,1]-planform_data[:-1,1])**2) )
-            # print(S_ref,c_ref,b_ref)
-            self.optvarval[0] = S_ref
-            self.optvarval[1] = c_ref
-            self.optvarval[2] = b_ref
+            self.var_dict['Cref'] = [2/S_ref*sum( section_lengths*(planform_data[:-1,1]*planform_data[1:,1]+1/3*(planform_data[1:,1]-planform_data[:-1,1])**2) )]
+            self.var_dict['Sref'] = [S_ref]
+
+            # print([section_lengths])
+            

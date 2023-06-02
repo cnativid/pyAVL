@@ -55,8 +55,8 @@
 
     0 Bodies
     5 Solid surfaces
-  118 Strips
- 1270 Vortices
+   81 Strips
+  869 Vortices
 
     5 Control variables
     0 Design parameters
@@ -109,7 +109,7 @@
 
   variable          constraint              
   ------------      ------------------------
-  A lpha        ->  CL          =  0.1787         
+  A lpha        ->  CL          =  0.5000         
   B eta         ->  beta        =   0.000         
   R oll  rate   ->  pb/2V       =   0.000         
   P itch rate   ->  qc/2V       =   0.000         
@@ -150,37 +150,36 @@
   Building bound-vortex velocity matrix...
 
  iter d(alpha)   d(beta)    d(pb/2V)   d(qc/2V)   d(rb/2V)   inboard_slainboard_flaoutboard_sloutboard_flelevator   
-   1 -0.273E+01 -0.000E+00 -0.000E+00 -0.000E+00  0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00
-   2  0.454E-02 -0.000E+00  0.000E+00 -0.000E+00  0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00
-   3 -0.120E-08 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00
+   1  0.772E-01 -0.000E+00  0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00
+   2  0.540E-05 -0.000E+00  0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00 -0.000E+00
  ---------------------------------------------------------------
  Vortex Lattice Output -- Total Forces
 
  Configuration: STARTG01                                                    
      # Surfaces =   5
-     # Strips   = 118
-     # Vortices =1270
+     # Strips   =  81
+     # Vortices = 869
 
-  Sref =  2312.0       Cref =  19.922       Bref =  116.69    
+  Sref =  826.13       Cref =  7.7656       Bref =  116.69    
   Xref =  0.0000       Yref =  0.0000       Zref =  0.0000    
 
  Standard axis orientation,  X fwd, Z down         
 
  Run case:  -unnamed-                              
 
-  Alpha =  -2.72167     pb/2V =  -0.00000     p'b/2V =  -0.00000
+  Alpha =   0.07721     pb/2V =  -0.00000     p'b/2V =  -0.00000
   Beta  =   0.00000     qc/2V =   0.00000
   Mach  =     0.000     rb/2V =  -0.00000     r'b/2V =  -0.00000
 
-  CXtot =  -0.01046     Cltot =  -0.00020     Cl'tot =  -0.00027
-  CYtot =  -0.00397     Cmtot =  -0.08704
-  CZtot =  -0.17836     Cntot =   0.00142     Cn'tot =   0.00141
+  CXtot =  -0.00429     Cltot =  -0.00056     Cl'tot =  -0.00056
+  CYtot =  -0.01074     Cmtot =  -0.26142
+  CZtot =  -0.50001     Cntot =   0.00383     Cn'tot =   0.00384
 
-  CLtot =   0.17866
-  CDtot =   0.00198
-  CDvis =   0.00000     CDind = 0.0019835
-  CLff  =   0.17825     CDff  = 0.0020324    | Trefftz
-  CYff  =  -0.00381         e =    0.8454    | Plane  
+  CLtot =   0.50000
+  CDtot =   0.00497
+  CDvis =   0.00000     CDind = 0.0049680
+  CLff  =   0.49961     CDff  = 0.0049410    | Trefftz
+  CYff  =  -0.01051         e =    0.9761    | Plane  
 
    inboard_slat    =   0.00000
    inboard_flap    =   0.00000
@@ -195,7 +194,7 @@
 
   variable          constraint              
   ------------      ------------------------
-  A lpha        ->  CL          =  0.1787         
+  A lpha        ->  CL          =  0.5000         
   B eta         ->  beta        =   0.000         
   R oll  rate   ->  pb/2V       =   0.000         
   P itch rate   ->  qc/2V       =   0.000         
@@ -236,7 +235,7 @@
 
   variable          constraint              
   ------------      ------------------------
-  A lpha        ->  CL          =  0.1787         
+  A lpha        ->  CL          =  0.5000         
   B eta         ->  beta        =   0.000         
   R oll  rate   ->  pb/2V       =   0.000         
   P itch rate   ->  qc/2V       =   0.000         
@@ -280,7 +279,7 @@ mrftot: fileid = TOT
 
   variable          constraint              
   ------------      ------------------------
-  A lpha        ->  CL          =  0.1787         
+  A lpha        ->  CL          =  0.5000         
   B eta         ->  beta        =   0.000         
   R oll  rate   ->  pb/2V       =   0.000         
   P itch rate   ->  qc/2V       =   0.000         
@@ -315,4 +314,14 @@ mrftot: fileid = TOT
   MRF  machine-readable format CPOM OML surface pressures
 
  .OPER (case 1/1)   c>  
+ AVL   c>   MRF  command not recognized.  Type a "?" for list
+
+ AVL   c>  
+ AVL   c>  
+ AVL   c>   OUTP command not recognized.  Type a "?" for list
+
+ AVL   c>  
+ AVL   c>   O    command not recognized.  Type a "?" for list
+
+ AVL   c>  
  AVL   c>  
